@@ -7,7 +7,7 @@
         <button type="button" class="bjui-navbar-toggle btn-default" data-toggle="collapse" data-target="#bjui-navbar-collapse">
             <i class="fa fa-bars"></i>
         </button>
-        <a class="bjui-navbar-logo" href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/backAsset/Static/Public/Img/logo.png"></a>
+        <a class="bjui-navbar-logo" href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/asset/Static/Public/Img/logo.png"></a>
     </div>
     <%
         String headerType=(String) request.getAttribute("peopleType");
