@@ -4,16 +4,16 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/frontAsset/images/icon.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/asset/images/logo.png">
     <title>网店订单管理系统</title>
-    <script src="${pageContext.request.contextPath}/backAsset/Static/BJUI/js/jquery-1.7.2.min.js"></script>
-    <script src="${pageContext.request.contextPath}/backAsset/Static/BJUI/js/jquery.cookie.js"></script>
-    <%--<script src="${pageContext.request.contextPath}/backAsset/Static/js/sha256.js"></script>--%>
-    <link href="${pageContext.request.contextPath}/backAsset/Static/BJUI/themes/css/bootstrap.min.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/asset/Static/BJUI/js/jquery-1.7.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/asset/Static/BJUI/js/jquery.cookie.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/asset/Static/js/sha256.js"></script>--%>
+    <link href="${pageContext.request.contextPath}/asset/Static/BJUI/themes/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         * {font-family: "Verdana", "Tahoma", "Lucida Grande", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;}
         body {
-            background: url(${pageContext.request.contextPath}/backAsset/images/loginbg_01.jpg) no-repeat center center fixed;
+            background: url(${pageContext.request.contextPath}/asset/images/loginbg_01.jpg) no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -76,7 +76,7 @@
             });
 
             $('#captcha_img').click(function () {
-                $("#captcha_img").attr("src", "${pageContext.request.contextPath}/admin/validatecode?t="+genTimestamp());
+                $("#captcha_img").attr("src", "${pageContext.request.contextPath}/validatecode?t="+genTimestamp());
             })
         });
         function genTimestamp(){
@@ -86,7 +86,7 @@
 
         function choose_bg() {
             var bg = Math.floor(Math.random() * 9 + 1);
-            $('body').css('background-image', 'url(${pageContext.request.contextPath}/backAsset/images/loginbg_0'+ bg +'.jpg)');
+            $('body').css('background-image', 'url(${pageContext.request.contextPath}/asset/images/loginbg_0'+ bg +'.jpg)');
         }
     </script>
 </head>
@@ -104,7 +104,7 @@
     <div class="setting"><a href="javascript:;" onclick="choose_bg();" title="更换背景"><span class="glyphicon glyphicon-th-large"></span></a></div>
     <div class="login_box">
         <div class="login_logo">
-            <img src="${pageContext.request.contextPath}/backAsset/images/logo.png" >
+            <img src="${pageContext.request.contextPath}/asset/images/logo.png" >
         </div>
         <!--
 		<c:if test="${!empty message}">
@@ -115,7 +115,7 @@
         -->
         <div class="login_form">
             <input type="hidden" value="${randomKey }" id="j_randomKey" />
-            <form action="${pageContext.request.contextPath}/admin/login" id="login_form" method="post">
+            <form action="${pageContext.request.contextPath}/login" id="login_form" method="post">
                 <input type="hidden" name="jfinal_token" value="${jfinal_token }" />
                 <div class="form-group">
                     <label for="j_username" class="t">用户名：</label> <input id="j_username" value="" name="username" type="text" class="form-control x319 in" autocomplete="off">
@@ -127,12 +127,7 @@
                     <%--<a href=javascript:randomcode_refresh()>刷新</a>--%>
                     <label for="j_captcha" class="t">验证码：</label>
                     <input id="j_captcha" name="authCode" type="text" class="form-control x164 in">
-                    <img id="captcha_img" src="${pageContext.request.contextPath}/admin/validatecode" alt="点击更换" title="点击更换" width="100" height="20" align='absMiddle' class="m" />
-                </div>
-                <div class="form-group">
-                    <label class="t"></label>
-                    <input  name="peopleType" type="radio" value="shopKeeper" checked>&nbsp;店主</label>　　
-                    <input  name="peopleType" type="radio" value="admin">&nbsp;管理员</label>
+                    <img id="captcha_img" src="${pageContext.request.contextPath}/validatecode" alt="点击更换" title="点击更换" width="100" height="20" align='absMiddle' class="m" />
                 </div>
                 <div class="form-group space">
                     <label class="t"></label>　　　

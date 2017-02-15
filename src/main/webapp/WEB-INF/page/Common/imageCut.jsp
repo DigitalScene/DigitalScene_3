@@ -59,7 +59,7 @@
 
 <div class="img-cropper">
     <div class="img-container">
-        <img id="image" src="${pageContext.request.contextPath}/backAsset/Static/Public/Img/default-img.jpg" alt="default-img">
+        <img id="image" src="${pageContext.request.contextPath}/asset/Static/Public/Img/default-img.jpg" alt="default-img">
     </div>
     <div class="preview-container">
         <div class="img-preview"></div><p>200px*200px</p>
