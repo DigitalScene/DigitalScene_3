@@ -1,5 +1,8 @@
 package cn.digitalScene.Controller;
 
+import cn.digitalScene.Model.Admin;
+import cn.digitalScene.Service.AdminService;
+import cn.digitalScene.Utils.MD5;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,22 +11,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import sun.misc.BASE64Encoder;
+
 
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
+
 
 /**
  * Created by 25065 on 2016/8/4.
  */
 @Controller
 public class IndexController {
-//    @Autowired
-//    private AdminService adminService;
-//    @Autowired
-//    private AdminLoginService adminLoginService;
-//    @Autowired
-//    private ShopKeeperService shopKeeperService;
+    @Autowired
+    private AdminService adminService;
 
     private Log logger= LogFactory.getLog(IndexController.class);
 
@@ -37,50 +37,22 @@ public class IndexController {
     public String login(@RequestParam(value = "username")String username,
                         @RequestParam(value = "password")String password,
                         @RequestParam(value = "authCode")String authCode,
-                        @RequestParam(value = "peopleType")String peopleType,
                         HttpSession session, Model model){
         try {
             String validateCode=(String) session.getAttribute("validateCode");
 
-            String loginName="";
-            String loginPassword="";
+
             Integer status=0;
 
-//            ShopKeeper shopKeeper=new ShopKeeper();
-//            Admin admin=new Admin();
+            Admin admin=adminService.findByUsername(username);
+            String encoder= MD5.getMD5(password.trim());
 
-//            if (peopleType.equals("shopKeeper")){
-//
-//                shopKeeper=shopKeeperService.selectByUsername(username);
-//                if (shopKeeper!=null){
-//                    loginName=shopKeeper.getUsername().trim();
-//                    loginPassword=shopKeeper.getPassword().trim();
-//                    status=shopKeeper.getStatus();
-//                }else {
-//                    model.addAttribute("message","该用户名不存在");
-//                    return "page/fail";
-//                }
+            status=admin.getStatus();
 
-//            }else if (peopleType.equals("admin")){
-//                admin=adminService.selectByUsername(username);
-//                if (admin!=null){
-//                    loginName=admin.getUsername().trim();
-//                    loginPassword=admin.getPassword().trim();
-//                    status=admin.getStatus();
-//                }else {
-//                    model.addAttribute("message","该用户名不存在");
-//                    return "page/fail";
-//                }
-//
-//            }
-
-            String encoder=new BASE64Encoder().encodeBuffer(password.getBytes("utf-8")).trim();
-            System.out.println(encoder+"-=--=-=--=");
-
-            if (!username.equals(loginName)){
+            if (!username.equals(admin.getUsername())){
                 model.addAttribute("message","该用户名不存在");
                 return "page/fail";
-            }else if (!encoder.equals(loginPassword)){
+            }else if (!encoder.equals(admin.getPassword())){
                 model.addAttribute("message","用户名或密码错误");
                 return "page/fail";
             }else if (!authCode.equals(validateCode)){
@@ -90,28 +62,10 @@ public class IndexController {
                 model.addAttribute("message","该用户已被锁定，请联系管理员解锁");
                 return "page/fail";
             }else {
-
-                if (peopleType.equals("shopKeeper")){
-                    //店主
                     session.setMaxInactiveInterval(30*60);
-                    session.setAttribute("peopleType","shopKeeper");
-//                    session.setAttribute("user",shopKeeper);
-                }else if (peopleType.equals("admin")){
-                    //管理员
-                    //保存上一次的登录时间以及登录次数
-//                    admin.setLoginTime(adminLoginService.findLastLoginTimeByAdminId(admin.getId()));
-//                    admin.setLoginCount(adminLoginService.findCountByAdminId(admin.getId())+1);
-//                    adminService.update(admin);
-//                //保存这次登录时间
-                    Calendar calendar= Calendar.getInstance();
-//                    AdminLogin adminLogin=new AdminLogin(calendar.getTime(),admin.getId());
-//                    adminLoginService.save(adminLogin);
-                    session.setMaxInactiveInterval(30*60);
-//                    session.setAttribute("peopleType","admin");
-//                    session.setAttribute("user",admin);
-                }
+                    session.setAttribute("user",admin);
                 session.setAttribute("login","success");
-                return "redirect:/admin/index";
+                return "redirect:/index";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,19 +73,21 @@ public class IndexController {
         return null;
     }
 
+    //登出
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpSession session){
         session.removeAttribute("login");
         session.removeAttribute("user");
-        session.removeAttribute("peopleType");
         return "page/login";
     }
 
+    //验证码
     @RequestMapping("/validatecode")
     public String validatecode(){
         return "page/validatecode";
     }
 
+    //首页
     @RequestMapping("/index")
     public String index(HttpSession session, Model model){
         logger.info("主页");
@@ -140,19 +96,8 @@ public class IndexController {
             String login=(String) session.getAttribute("login");
             if (login.equals("success")){
                 //登录成功
-//                String peopleType=(String) session.getAttribute("peopleType");
-//                System.out.println(peopleType+"--==-=-=-=-");
-
-//                if (peopleType.equals("shopKeeper")){
-                    //店主
-//                    ShopKeeper shopKeeper=(ShopKeeper)session.getAttribute("user");
-//                    model.addAttribute("user",shopKeeper);
-//                }else if (peopleType.equals("admin")){
-                    //管理员
-//                    Admin admin=(Admin)session.getAttribute("user");
-//                    model.addAttribute("user",admin);
-//                }
-//                model.addAttribute("peopleType",peopleType);
+                Admin admin=(Admin)session.getAttribute("user");
+                model.addAttribute("user",admin);
                 return "page/backIndex";
             }else {
                 session.removeAttribute("login");

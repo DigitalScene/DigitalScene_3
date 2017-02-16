@@ -33,7 +33,7 @@
 
             <div class="navtab-panel tabsPageContent">
                 <div class="navtabPage unitBox">
-                    <h2 style="background:#FFF;text-align: center;padding-top: 10%;">欢迎来到网店订单管理系统</h2>
+                    <h2 style="background:#FFF;text-align: center;padding-top: 10%;">欢迎来到数字场景构建系统</h2>
                 </div>
             </div>
         </div>

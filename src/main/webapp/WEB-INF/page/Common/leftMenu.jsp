@@ -7,41 +7,6 @@
         <div class="toggleCollapse"><h2><i class="fa fa-bars"></i> 导航栏 <i class="fa fa-bars"></i></h2><a href="javascript:;" class="lock"><i class="fa fa-lock"></i></a></div>
         <div class="panel-group panel-main" data-toggle="accordion" id="bjui-accordionmenu" data-heightbox="#bjui-sidebar" data-offsety="26">
 
-
-           <%
-               String peopleType=(String) request.getAttribute("peopleType");
-               if (peopleType.equals("shopKeeper")){
-           %>
-             <%--店主列表 start--%>
-            <div class="panel panel-default">
-                <div class="panel-heading panelContent">
-                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#bjui-accordionmenu" href="#bjui-collapse0" class="active"><i class="fa fa-caret-square-o-down"></i>&nbsp;店主管理</a></h4>
-                </div>
-                <div id="bjui-collapse0" class="panel-collapse panelContent collapse in">
-                    <div class="panel-body" >
-                        <ul id="bjui-tree0" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true">
-                            <li data-id="Shop" data-pid="0">商品管理</li>
-                            <li data-id="shop_0" data-pid="Shop" data-url="<%=request.getContextPath()%>/admin/shopKeeper/shop/list" data-tabid="shop_0" data-fresh="true" data-reloadWarn="true">商品查看</li>
-                            <li data-id="shop_1" data-pid="Shop" data-url="<%=request.getContextPath()%>/admin/shopKeeper/shunShop/list" data-tabid="shop_1" data-fresh="true" data-reloadWarn="true">瞬时秒杀</li>
-                            <li data-id="shopKeeperOrder" data-pid="0">订单管理</li>
-                            <li data-id="shopKeeperOrder_0" data-pid="shopKeeperOrder" data-url="<%=request.getContextPath()%>/admin/shopKeeper/orders/list" data-tabid="shopKeeperOrder_0" data-fresh="true" data-reloadWarn="true">订单列表</li>
-                            <%--<li data-id="mutant_1" data-pid="mutant" data-url="<%=request.getContextPath()%>/Admin/mutant/search" data-tabid="mutant_1" data-fresh="true" data-reloadWarn="true">诱变类型与品种</li>--%>
-                            <li data-id="shopKeeperProfit" data-pid="0">收益管理</li>
-                            <li data-id="shopKeeperProfit_0" data-pid="shopKeeperProfit" data-url="<%=request.getContextPath()%>/admin/shopKeeper/profit/list" data-tabid="shopKeeperProfit_0" data-fresh="true" data-reloadWarn="true">统计与收益</li>
-                            <%--<li data-id="trait_0" data-pid="trait" data-url="<%=request.getContextPath()%>/Admin/lab/message/basic" data-tabid="trait_0" data-fresh="true" data-reloadWarn="true">添加特性</li>--%>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panelFooter"><div class="panelFooterContent"></div></div>
-            </div>
-              <%--店主列表 end--%>
-            <%
-                }
-            %>
-
-            <%
-                if (peopleType.equals("admin")){
-            %>
                   <%--管理员列表 start--%>
               <div class="panel panel-default">
                   <div class="panel-heading panelContent">
@@ -89,9 +54,7 @@
                         <div class="panelFooter"><div class="panelFooterContent"></div></div>
                   </div>
                   <%--管理员列表 end--%>
-            <%
-                }
-            %>
+
         </div>
     </div>
 </div>

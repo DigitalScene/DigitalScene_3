@@ -7,7 +7,7 @@
         <button type="button" class="bjui-navbar-toggle btn-default" data-toggle="collapse" data-target="#bjui-navbar-collapse">
             <i class="fa fa-bars"></i>
         </button>
-        <a class="bjui-navbar-logo" href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/asset/Static/Public/Img/logo.png"></a>
+        <a class="bjui-navbar-logo" href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/asset/images/logo.png"></a>
     </div>
     <%
         String headerType=(String) request.getAttribute("peopleType");
@@ -18,30 +18,16 @@
                 <div><span id="bjui-date"></span>&nbsp;<i class="fa fa-clock-o"></i> <span id="bjui-clock"></span></div><br>
             </li>
             <!--<li><a href="#">消息 <span class="badge">0</span></a></li>-->
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">当前用户：${user.nickname}(<%if (headerType.equals("shopKeeper")){%>店主<%}%><%if (headerType.equals("admin")){%>管理员<%}%>)<span class="caret"></span></a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">当前用户：${user.nickname}(管理员)<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <%--<li><a href="{:U('Admin/User/modifyPwd')}" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="400" data-height="260">&nbsp;<span class="fa fa-lock"></span> 修改密码</a></li>--%>
 
-                        <%
-                            if (headerType.equals("shopKeeper")){
-                        %>
-                        <li><a href="${pageContext.request.contextPath}/admin/shopKeeper/add?id=${user.id}&type=shopKeeper" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="900" data-height="300">&nbsp;<span class="fa fa-user"></span> 我的资料</a></li>
-                        <%
-                            }
-                        %>
 
-                        <%
-                            if (headerType.equals("admin")){
-                        %>
-                        <li><a href="${pageContext.request.contextPath}/admin/admin/add?id=${user.id}&type=admin&update=head" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="880" data-height="280">&nbsp;<span class="fa fa-user"></span> 我的资料</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/yuMing/list" data-toggle="dialog" data-id="changeyu_ming" data-mask="true" data-width="400" data-height="140">&nbsp;<span class="fa fa-user"></span> 域名编辑</a></li>
-                        <%
-                            }
-                        %>
+                        <li><a href="${pageContext.request.contextPath}/admin/add?id=${user.id}&type=admin&update=head" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="880" data-height="280">&nbsp;<span class="fa fa-user"></span> 我的资料</a></li>
 
                     <!--li><a href="{:U('Admin/Index/cache')}" data-toggle="navtab">&nbsp;<span class="fa fa-trash"></span> 清理缓存</a></li-->
                     <li class="divider"></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/logout" class="red">&nbsp;<span class="fa fa-power-off"></span> 注销登陆</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout" class="red">&nbsp;<span class="fa fa-power-off"></span> 注销登陆</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle theme purple" data-toggle="dropdown"><i class="fa fa-tree"></i></a>
