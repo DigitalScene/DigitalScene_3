@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>网店订单管理系统</title>
+    <title>数字场景构建管理系统</title>
     <meta name="Keywords" content=""/>
     <%--<link rel="shortcut icon" href="${pageContext.request.contextPath}/frontAsset/images/icon.png">--%>
     <%@ include file="Common/intoHead.jsp" %>

@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/asset/images/logo.png">
-    <title>网店订单管理系统</title>
+    <title>数字场景构建管理系统</title>
     <script src="${pageContext.request.contextPath}/asset/Static/BJUI/js/jquery-1.7.2.min.js"></script>
     <script src="${pageContext.request.contextPath}/asset/Static/BJUI/js/jquery.cookie.js"></script>
     <%--<script src="${pageContext.request.contextPath}/asset/Static/js/sha256.js"></script>--%>
