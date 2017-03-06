@@ -49,24 +49,24 @@ public class IndexController {
 
             status=admin.getStatus();
 
-            if (!username.equals(admin.getUsername())){
-                model.addAttribute("message","该用户名不存在");
-                return "page/fail";
-            }else if (!encoder.equals(admin.getPassword())){
-                model.addAttribute("message","用户名或密码错误");
-                return "page/fail";
-            }else if (!authCode.equals(validateCode)){
-                model.addAttribute("message","验证码错误");
-                return "page/fail";
-            }else if (status==1){
-                model.addAttribute("message","该用户已被锁定，请联系管理员解锁");
-                return "page/fail";
-            }else {
-                    session.setMaxInactiveInterval(30*60);
-                    session.setAttribute("user",admin);
-                session.setAttribute("login","success");
+//            if (!username.equals(admin.getUsername())){
+//                model.addAttribute("message","该用户名不存在");
+//                return "page/fail";
+//            }else if (!encoder.equals(admin.getPassword())){
+//                model.addAttribute("message","用户名或密码错误");
+//                return "page/fail";
+//            }else if (!authCode.equals(validateCode)){
+//                model.addAttribute("message","验证码错误");
+//                return "page/fail";
+//            }else if (status==1){
+//                model.addAttribute("message","该用户已被锁定，请联系管理员解锁");
+//                return "page/fail";
+//            }else {
+//                    session.setMaxInactiveInterval(30*60);
+//                    session.setAttribute("user",admin);
+//                session.setAttribute("login","success");
                 return "redirect:/index";
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,16 +93,16 @@ public class IndexController {
         logger.info("主页");
 //        暂时注释
         try {
-            String login=(String) session.getAttribute("login");
-            if (login.equals("success")){
-                //登录成功
-                Admin admin=(Admin)session.getAttribute("user");
-                model.addAttribute("user",admin);
+////            String login=(String) session.getAttribute("login");
+//            if (login.equals("success")){
+//                //登录成功
+//                Admin admin=(Admin)session.getAttribute("user");
+//                model.addAttribute("user",admin);
                 return "page/backIndex";
-            }else {
-                session.removeAttribute("login");
-                return "page/login";
-            }
+//            }else {
+//                session.removeAttribute("login");
+//                return "page/login";
+//            }
         } catch (Exception e) {
             //session login不存在，报错
             return "page/login";
