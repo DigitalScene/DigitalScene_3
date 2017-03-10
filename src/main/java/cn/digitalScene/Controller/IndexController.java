@@ -1,7 +1,7 @@
 package cn.digitalScene.Controller;
 
-import cn.digitalScene.Model.Admin;
-import cn.digitalScene.Service.AdminService;
+import cn.digitalScene.Model.User;
+import cn.digitalScene.Service.UserService;
 import cn.digitalScene.Utils.MD5;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.servlet.http.HttpSession;
-import java.util.Calendar;
 
 
 /**
@@ -23,7 +22,7 @@ import java.util.Calendar;
 @Controller
 public class IndexController {
     @Autowired
-    private AdminService adminService;
+    private UserService adminService;
 
     private Log logger= LogFactory.getLog(IndexController.class);
 
@@ -44,7 +43,7 @@ public class IndexController {
 
             Integer status=0;
 
-            Admin admin=adminService.findByUsername(username);
+            User admin=adminService.findByUsername(username);
             String encoder= MD5.getMD5(password.trim());
 
             status=admin.getStatus();
@@ -96,7 +95,7 @@ public class IndexController {
 ////            String login=(String) session.getAttribute("login");
 //            if (login.equals("success")){
 //                //登录成功
-//                Admin admin=(Admin)session.getAttribute("user");
+//                User admin=(User)session.getAttribute("user");
 //                model.addAttribute("user",admin);
                 return "page/backIndex";
 //            }else {

@@ -20,12 +20,12 @@
             <!--<li><a href="#">消息 <span class="badge">0</span></a></li>-->
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">当前用户：${user.nickname}(管理员)<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <%--<li><a href="{:U('Admin/User/modifyPwd')}" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="400" data-height="260">&nbsp;<span class="fa fa-lock"></span> 修改密码</a></li>--%>
+                    <%--<li><a href="{:U('User/User/modifyPwd')}" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="400" data-height="260">&nbsp;<span class="fa fa-lock"></span> 修改密码</a></li>--%>
 
 
                         <li><a href="${pageContext.request.contextPath}/admin/add?id=${user.id}&type=admin&update=head" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="880" data-height="280">&nbsp;<span class="fa fa-user"></span> 我的资料</a></li>
 
-                    <!--li><a href="{:U('Admin/Index/cache')}" data-toggle="navtab">&nbsp;<span class="fa fa-trash"></span> 清理缓存</a></li-->
+                    <!--li><a href="{:U('User/Index/cache')}" data-toggle="navtab">&nbsp;<span class="fa fa-trash"></span> 清理缓存</a></li-->
                     <li class="divider"></li>
                     <li><a href="${pageContext.request.contextPath}/logout" class="red">&nbsp;<span class="fa fa-power-off"></span> 注销登陆</a></li>
                 </ul>

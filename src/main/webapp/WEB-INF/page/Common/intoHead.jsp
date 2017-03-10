@@ -98,7 +98,7 @@
         BJUI.init({
             JSPATH       : '<%=request.getContextPath()%>/asset/Static/BJUI/',
             PLUGINPATH   : '<%=request.getContextPath()%>/asset/Static/BJUI/plugins/',
-            loginInfo    : {url:'/Admin/login', title:'登录', width:400, height:200}, // �Ự��ʱ�󵯳���¼�Ի���
+            loginInfo    : {url:'/User/login', title:'登录', width:400, height:200}, // �Ự��ʱ�󵯳���¼�Ի���
             statusCode   : {ok:200, error:300, timeout:301}, //[��ѡ]
             ajaxTimeout  : 50000, //[��ѡ]ȫ��Ajax����ʱʱ��(����)
             alertTimeout : 1000,  //[��ѡ]��Ϣ��ʾ[info/correct]�Զ��ر���ʱ(����)

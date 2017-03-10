@@ -1,16 +1,15 @@
 package cn.digitalScene.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 25065 on 2017/2/15.
  */
 @Entity
-@Table(name = "ds_admin")
-public class Admin {
+@Table(name = "ds_user")
+public class User {
     @Id
     @GeneratedValue
     private Integer id;//主键
@@ -23,10 +22,13 @@ public class Admin {
 
     private Integer status;//状态，0正常，1锁定
 
-    public Admin() {
+    @OneToMany(cascade = {CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE},fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Role> roleArrayList=new ArrayList<>();
+
+    public User() {
     }
 
-    public Admin(String username, String nickname, String password, Integer status) {
+    public User(String username, String nickname, String password, Integer status) {
         this.username = username;
         this.nickname = nickname;
         this.password = password;
@@ -71,5 +73,18 @@ public class Admin {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public List<Role> getRoleArrayList() {
+        return roleArrayList;
+    }
+
+    public void setRoleArrayList(List<Role> roleArrayList) {
+        this.roleArrayList = roleArrayList;
+    }
+
+    public void addRoleArrayList(Role role){
+        role.setUser(this);
+        this.getRoleArrayList().add(role);
     }
 }

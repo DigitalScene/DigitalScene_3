@@ -1,95 +1,56 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="bjui-pageContent">
-     <form action="${pageContext.request.contextPath}/admin/user/add" data-toggle="validate" data-reload-navtab="true" method="post">
-         <input type="hidden" name="isDel" value="0">
+     <form action="${pageContext.request.contextPath}/user/add" data-toggle="validate" data-reload-navtab="true" method="post">
          <input type="hidden" name="id" value="${user.id}">
+         <c:if test="${user!=null}">
+             <input type="hidden" name="password" value="${user.password}">
+         </c:if>
          <div class="pageFormContent" data-layout-h="0">
-             <div style="padding: 5px;"></div>
-             <table class="table table-condensed table-hover" width="100%" >
-                 <thead>
-                 <label>普通用户信息</label>
-                 </thead>
+             <table class="table table-condensed table-hover" width="100%">
                  <tbody>
-                       <tr >
-                           <td colspan="2" style="width: 50%;">
-                               <label class="control-label x100">用户名：</label>
-                               <input type="text" data-rule="required" id="username" name="username" value="${user.username}" size="20">
-                               <%--<a href="#" id="checkUsername" >检测用户名是否已存在</a>--%>
-                           </td>
-                           <td colspan="2" >
-                               <label class="control-label x100">昵称：</label>
-                               <input type="text" data-rule="required" name="nickname" value="${user.nickname}" size="20">
-                           </td>
-                       </tr>
-                       <tr >
-                           <td colspan="2" style="width: 50%;">
-                               <label class="control-label x100">密码：</label>
-                               <input type="password" data-rule="密码:required" name="password" value="${user.decoderPassword()}" size="20">
-                           </td>
+                       <tr>
                            <td colspan="2">
-                               <label class="control-label x100">邮箱：</label>
-                               <input type="text" data-rule="email" name="email" value="${user.email}" size="20">
+                               <label class="control-label x100">用户名：</label>
+                               <input type="text" data-rule="required" id="username" name="username" value="${user.username}" size="40">
+                               <a href="#" id="checkUsername" ><input type="button" value="检测用户名是否已存在"></a>
                            </td>
                        </tr>
+                       <tr>
+                           <td colspan="2">
+                               <label class="control-label x100">昵称：</label>
+                               <input type="text" data-rule="required" name="nickname" value="${user.nickname}" size="40">
+                           </td>
+                       </tr>
+                       <c:if test="${user==null}">
+                           <tr>
+                               <td colspan="2">
+                                   <label class="control-label x100">密码：</label>
+                                   <input type="password" data-rule="密码:required" name="password" value="${user.password}" size="40">
+                               </td>
+                           </tr>
+                           <tr>
+                               <td colspan="2">
+                                   <label class="control-label x100">确认密码：</label>
+                                   <input type="password" data-rule="确认密码:required;match(password)" value="${user.password}" size="40">
+                               </td>
+                           </tr>
+                       </c:if>
 
                        <tr>
-                           <td colspan="2" style="width: 50%;">
-                               <label class="control-label x100">确认密码：</label>
-                               <input type="password" data-rule="确认密码:required;match(password)" value="${user.decoderPassword()}" size="20">
-                           </td>
                            <td colspan="2">
-                               <label class="control-label x100">手机号：</label>
-                               <input type="text" data-rule="mobile" name="telephone" value="${user.telephone}" size="20">
+                               <label class="control-label x100">角色：</label>
+                               <input type="checkbox" name="roles" data-toggle="icheck" data-label="管理员" value="admin" <c:if test="${roles.contains('admin')}">checked</c:if>/>
+                               <input type="checkbox" name="roles" data-toggle="icheck" data-label="普通用户" value="user" <c:if test="${roles.contains('user')}">checked</c:if>/>
                            </td>
                        </tr>
-                 </tbody>
-             </table>
-
-             <div style="padding: 10px;"></div>
-             <table class="table table-bordered table-hover table-striped table-top" width="100%" >
-                 <thead>
-                 <label>地址信息</label>
-                 <th align="center">序号</th>
-                 <th align="center">收货人</th>
-                 <th align="center">手机号</th>
-                 <th align="center">邮政编码</th>
-                 <th align="center">省份</th>
-                 <th align="center">城市</th>
-                 <th align="center">区域</th>
-                 <th align="center">街道</th>
-                 <th align="center">详细地址</th>
-                 <th align="center">状态</th>
-                 </thead>
-                 <tbody>
-                 <c:forEach items="${userAddressList}" var="list" varStatus="i">
-                     <tr >
-                         <td>${i.index+1}</td>
-                         <td>${list.name}</td>
-                         <td>${list.phone}</td>
-                         <td>${list.zipcode}</td>
-                         <td>${list.province}</td>
-                         <td>${list.city}</td>
-                         <td>${list.area}</td>
-                         <td>${list.town}</td>
-                         <td>${list.adddetail}</td>
-                         <td><c:if test="${list.status==0}">默认</c:if><c:if test="${list.status!=0}">普通</c:if></td>
-                     </tr>
-                 </c:forEach>
-
-                 </tbody>
-             </table>
-
-             <div style="padding: 10px;"></div>
-             <table class="table table-bordered table-hover table-striped table-top" width="100%">
-                 <tbody>
-                 <tr>
-                     <td colspan="4">
-                         <label class="control-label x100">状态：</label>
-                         <input type="radio" name="status" data-toggle="icheck" data-label="正常" value="0" <c:if test="${user.status==0}">checked</c:if><c:if test="${user.status==null}">checked</c:if>/>
-                         <input type="radio" name="status" data-toggle="icheck" data-label="锁定" value="1" <c:if test="${user.status==1}">checked</c:if>/>
-                     </td>
-                 </tr>
+                       <tr>
+                           <td colspan="2">
+                               <label class="control-label x100">状态：</label>
+                               <input type="radio" name="status" data-toggle="icheck" data-label="正常" value="0" <c:if test="${user.status==0}">checked</c:if><c:if test="${user.status==null}">checked</c:if>/>
+                               <input type="radio" name="status" data-toggle="icheck" data-label="锁定" value="1" <c:if test="${user.status==1}">checked</c:if>/>
+                           </td>
+                       </tr>
                  </tbody>
              </table>
          </div>
@@ -106,7 +67,7 @@
 //        alert("hello");
         $.ajax({
             type:"POST",
-            url:"${pageContext.request.contextPath}"+"/admin/user/checkUsername",
+            url:"${pageContext.request.contextPath}"+"/user/checkUsername",
             dataType:"json",
             data:{
                 username:$("#username").val()
@@ -115,11 +76,10 @@
             success:function (data) {
 //                alert(data.message);
                 $(this).bjuiajax('ajaxDone',data);
-            },
-            error:function (data) {
-                alert("函数访问失败");
             }
+
         })
-    })
+    });
+
 </script>
 

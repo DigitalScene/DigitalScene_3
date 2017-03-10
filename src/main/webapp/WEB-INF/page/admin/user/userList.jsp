@@ -1,9 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/admin/user/list" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/user/userList" method="post">
         <input type="hidden" name="pageSize" value="${userList.size}">
+        <input type="hidden" name="pageNumbers" value="<fmt:formatNumber value='${userList.totalElements/userList.size+((userList.totalElements/userList.size)%1==0?0:0.5)}' type="number" pattern='#,###,###,###'/>">
         <input type="hidden" name="pageCurrent" value="${userList.number+1}">
         <input type="hidden" name="orderField" value="${param.orderField}">
         <input type="hidden" name="orderDirection" value="${param.orderDirection}">
@@ -20,7 +22,7 @@
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
             <div class="pull-right">
                 <div class="btn-group">
-                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/admin/user/add" data-toggle="dialog" data-width="900" data-height="500" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i> 添加普通用户</a></button>
+                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/user/add" data-toggle="dialog" data-width="880" data-height="280" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i> 添加管理员</a></button>
                 </div>
             </div>
         </div>
@@ -28,9 +30,6 @@
 </div>
 
 <div class="bjui-pageContent">
-
-
-
     <%--<table data-toggle="tablefixed" data-width="100%" data-nowrap="true">--%>
     <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true">
         <thead>
@@ -38,9 +37,9 @@
             <th >序号</th>
             <th data-order-field="username" >用户名</th>
             <th data-order-field="nickname" >昵称</th>
-            <th data-order-field="email">邮箱</th>
-            <th data-order-field="telephone">手机号</th>
+            <th >角色</th>
             <th data-order-field="status">状态</th>
+            <th width="200">密码修改</th>
             <th width="240">操作</th>
         </tr>
         </thead>
@@ -50,14 +49,16 @@
                 <td>${i.index+1}</td>
                 <td>${list.username}</td>
                 <td>${list.nickname}</td>
-                <td>${list.email}</td>
-                <td>${list.telephone}</td>
+                <td><c:forEach items="${list.roleArrayList}" var="li"> <c:if test="${li.role.equals('admin')}">管理员</c:if>  <c:if test="${li.role.equals('user')}">普通用户</c:if> </c:forEach> </td>
                 <td><c:if test="${list.status==0}">正常</c:if><c:if test="${list.status==1}">锁定</c:if></td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/admin/user/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="900" data-height="500" data-id="dialog-mask" data-mask="true">编辑</a>
-                    <a href="${pageContext.request.contextPath}/admin/user/jieDing?id=${list.id}" class="btn btn-blue" data-toggle="doajax" data-confirm-msg="确定要解锁吗？">解锁</a>
-                    <a href="${pageContext.request.contextPath}/admin/user/suoDing?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要锁定吗？">锁定</a>
-                    <a href="${pageContext.request.contextPath}/admin/user/delete?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除吗？">删除</a>
+                    <a href="${pageContext.request.contextPath}/user/updatePassword?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="650" data-height="200" data-id="dialog-mask" data-mask="true">修改密码</a>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/user/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="880" data-height="270" data-id="dialog-mask" data-mask="true">编辑</a>
+                    <a href="${pageContext.request.contextPath}/user/jieSuo?id=${list.id}" class="btn btn-blue" data-toggle="doajax" data-confirm-msg="确定要解锁吗？">解锁</a>
+                    <a href="${pageContext.request.contextPath}/user/suoDing?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要锁定吗？">锁定</a>
+                    <a href="${pageContext.request.contextPath}/user/delete?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除吗？">删除</a>
                 </td>
             </tr>
         </c:forEach>

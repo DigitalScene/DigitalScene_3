@@ -1,5 +1,5 @@
-import cn.digitalScene.Model.Admin;
-import cn.digitalScene.Service.AdminService;
+import cn.digitalScene.Model.User;
+import cn.digitalScene.Service.UserService;
 import cn.digitalScene.Utils.MD5;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,11 +15,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class AdminTest {
 
     @Autowired
-    private AdminService adminService;
+    private UserService adminService;
 
     @Test
     public void add(){
-        Admin admin=new Admin("yang","小白", MD5.getMD5("123456"),1);
+        User admin=new User("yang","小白", MD5.getMD5("123456"),1);
         adminService.add(admin);
+    }
+
+    @Test
+    public void test(){
+        int a=11;
+        int b=2;
+        System.out.println(a/b);
     }
 }
