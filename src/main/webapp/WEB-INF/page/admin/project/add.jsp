@@ -1,56 +1,80 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Calendar" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Calendar calendar=Calendar.getInstance();
+    SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String nowDate=format.format(calendar.getTime());
+%>
 <div class="bjui-pageContent">
-     <form action="${pageContext.request.contextPath}/user/add" data-toggle="validate" data-reload-navtab="true" method="post">
-         <input type="hidden" name="id" value="${user.id}">
-         <c:if test="${user!=null}">
-             <input type="hidden" name="password" value="${user.password}">
-         </c:if>
+     <form action="${pageContext.request.contextPath}/project/add" data-toggle="validate" data-reload-navtab="true" method="post">
+         <input type="hidden" name="id" value="${project.id}">
          <div class="pageFormContent" data-layout-h="0">
              <table class="table table-condensed table-hover" width="100%">
                  <tbody>
                        <tr>
                            <td colspan="2">
-                               <label class="control-label x100">用户名：</label>
-                               <input type="text" data-rule="required" id="username" name="username" value="${user.username}" size="40">
-                               <a href="#" id="checkUsername" ><input type="button" value="检测用户名是否已存在"></a>
+                               <label class="control-label x100">项目名称：</label>
+                               <input type="text" data-rule="required" id="projectName" name="projectName" value="${project.projectName}" size="60" <c:if test="${project.status!=0}">readonly</c:if> >
                            </td>
                        </tr>
                        <tr>
                            <td colspan="2">
-                               <label class="control-label x100">昵称：</label>
-                               <input type="text" data-rule="required" name="nickname" value="${user.nickname}" size="40">
+                               <label class="control-label x100">创建者：</label>
+                               <input type="text" data-rule="required"  name="creator" value="${project.creator}" size="60" <c:if test="${project.status!=0}">readonly</c:if>>
                            </td>
                        </tr>
-                       <c:if test="${user==null}">
+                       <tr>
+                           <td colspan="2">
+                               <label class="control-label x100">创建时间：</label>
+                               <c:if test="${project.createTime==null||project.createTime.equals('')}">
+                                   <input type="text" name="frontCreateTime" value="<%=nowDate%>" size="60">
+                               </c:if>
+                               <c:if test="${project.createTime!=null&&!project.createTime.equals('')}">
+                                   <input type="text" name="frontCreateTime" value="${project.createTimeString}" size="60" <c:if test="${project.status!=0}">readonly</c:if>>
+                               </c:if>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="2">
+                               <label class="control-label x100">项目描述：<br></label>
+                               <div style="display: inline-block;vertical-align: middle;">
+                                   <textarea name="description" style="width:600px;height:50px" <c:if test="${project.status!=0}">readonly</c:if> >${project.description}</textarea>
+                               </div>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="2">
+                               <label class="control-label x100">必须模块：</label>
+                               <input type="checkbox" data-toggle="icheck" data-label="数据上传模块" value="0" checked disabled/>
+                               <input type="checkbox" data-toggle="icheck" data-label="原始图编辑模块" value="1" checked disabled/>
+                               <input type="checkbox" data-toggle="icheck" data-label="球形图制作模块" value="2" checked disabled/>
+                               <input type="checkbox" data-toggle="icheck" data-label="场景构建模块" value="3" checked disabled/>
+                               <input type="checkbox" data-toggle="icheck" data-label="数据整合模块" value="4" checked disabled/>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="2">
+                               <label class="control-label x100">非必须模块：</label>
+                               <input type="checkbox" name="nonessentialModels" data-toggle="icheck" data-label="音频编辑模块" value="mp3Edit" <c:if test="${project.is_mp3EditFinish!=3}">checked</c:if> <c:if test="${project.status!=0}">disabled</c:if>/>
+                               <input type="checkbox" name="nonessentialModels" data-toggle="icheck" data-label="视频编辑模块" value="videoEdit" <c:if test="${project.is_videoEditFinish!=3}">checked</c:if> <c:if test="${project.status!=0}">disabled</c:if>/>
+                               <input type="checkbox" name="nonessentialModels" data-toggle="icheck" data-label="3D模型制作模块" value="thrDModelMade" <c:if test="${project.is_thrDModelMadeFinish!=3}">checked</c:if> <c:if test="${project.status!=0}">disabled</c:if>/>
+                               <input type="checkbox" name="nonessentialModels" data-toggle="icheck" data-label="字幕编辑模块" value="subtitleEdit" <c:if test="${project.is_subtitleEditFinish!=3}">checked</c:if> <c:if test="${project.status!=0}">disabled</c:if>/>
+                               <span class="alert-info">（注：可选可不选）</span>
+                           </td>
+                       </tr>
+                       <c:if test="${project.status!=0}">
                            <tr>
                                <td colspan="2">
-                                   <label class="control-label x100">密码：</label>
-                                   <input type="password" data-rule="密码:required" name="password" value="${user.password}" size="40">
-                               </td>
-                           </tr>
-                           <tr>
-                               <td colspan="2">
-                                   <label class="control-label x100">确认密码：</label>
-                                   <input type="password" data-rule="确认密码:required;match(password)" value="${user.password}" size="40">
+                                   <label class="control-label x120"></label>
+                                   <div style="display: inline-block;padding: 10px;line-height: 24px;margin: 10px 0;border: 2px dashed #1F73B6">
+                                       说明：项目进行中，不允许编辑
+                                   </div>
                                </td>
                            </tr>
                        </c:if>
 
-                       <tr>
-                           <td colspan="2">
-                               <label class="control-label x100">角色：</label>
-                               <input type="checkbox" name="roles" data-toggle="icheck" data-label="管理员" value="admin" <c:if test="${roles.contains('admin')}">checked</c:if>/>
-                               <input type="checkbox" name="roles" data-toggle="icheck" data-label="普通用户" value="user" <c:if test="${roles.contains('user')}">checked</c:if>/>
-                           </td>
-                       </tr>
-                       <tr>
-                           <td colspan="2">
-                               <label class="control-label x100">状态：</label>
-                               <input type="radio" name="status" data-toggle="icheck" data-label="正常" value="0" <c:if test="${user.status==0}">checked</c:if><c:if test="${user.status==null}">checked</c:if>/>
-                               <input type="radio" name="status" data-toggle="icheck" data-label="锁定" value="1" <c:if test="${user.status==1}">checked</c:if>/>
-                           </td>
-                       </tr>
                  </tbody>
              </table>
          </div>
@@ -59,27 +83,12 @@
 <div class="bjui-pageFooter">
        <ul>
            <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
-           <li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+           <c:if test="${project.status==0}">
+               <li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+           </c:if>
        </ul>
 </div>
 <script>
-    $("#checkUsername").on("click",function () {
-//        alert("hello");
-        $.ajax({
-            type:"POST",
-            url:"${pageContext.request.contextPath}"+"/user/checkUsername",
-            dataType:"json",
-            data:{
-                username:$("#username").val()
-            },
-
-            success:function (data) {
-//                alert(data.message);
-                $(this).bjuiajax('ajaxDone',data);
-            }
-
-        })
-    });
 
 </script>
 

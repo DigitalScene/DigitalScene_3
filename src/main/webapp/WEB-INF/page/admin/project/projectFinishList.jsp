@@ -31,7 +31,8 @@
         <thead>
         <tr>
             <th colspan="4" class="project">基本信息</th>
-            <th colspan="5" class="project">模块信息</th>
+            <th colspan="5" class="project">必须模块（状态）</th>
+            <th colspan="4" class="project">非必须模块（状态）</th>
             <th colspan="3" class="project">其他</th>
         </tr>
         <tr>
@@ -76,6 +77,11 @@
                 </td>
             </tr>
         </c:forEach>
+
+        <%--列表为空时--%>
+        <c:if test="${projectsList==null}">
+            <tr><td colspan="15" style="text-align: center;color: red;font-size: 14px">没有要显示的数据</td></tr>
+        </c:if>
         </tbody>
     </table>
 </div>
