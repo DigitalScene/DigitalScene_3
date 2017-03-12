@@ -6,6 +6,7 @@ import cn.digitalScene.Service.RoleService;
 import cn.digitalScene.Service.UserService;
 import cn.digitalScene.Utils.ExecuteResult;
 import cn.digitalScene.Utils.MD5;
+import cn.digitalScene.Utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -51,14 +52,14 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/userList")
-    public String adminList(@RequestParam(required = false)String username,
-                            @RequestParam(required = false)String nickname,
-                            @RequestParam(required = false)Integer status,
-                            @RequestParam(required = false)Integer pageNumbers,
-                            @RequestParam(required = false)Integer pageSize,
-                            @RequestParam(required = false)Integer pageCurrent,
-                            @RequestParam(required = false)String orderField,
-                            @RequestParam(required = false)String orderDirection,
+    public String adminList(@RequestParam(value = "username",required = false)String username,
+                            @RequestParam(value = "nickname",required = false)String nickname,
+                            @RequestParam(value = "status",required = false)Integer status,
+                            @RequestParam(value = "pageNumbers",required = false)Integer pageNumbers,
+                            @RequestParam(value = "pageSize",required = false)Integer pageSize,
+                            @RequestParam(value = "pageCurrent",required = false)Integer pageCurrent,
+                            @RequestParam(value = "orderField",required = false)String orderField,
+                            @RequestParam(value = "orderDirection",required = false)String orderDirection,
                             Model model){
         Page<User> adminList= null;
 
@@ -83,15 +84,11 @@ public class UserController {
                 pageSize=20;
             }
 
-            if (pageCurrent==null||pageCurrent.equals("")){
-                pageCurrent=0;
-            }else if(parameterCountNow!=parameterCountBefore){
-                pageCurrent=0;
+
+            pageCurrent= PageUtils.returnPageCurrent(pageCurrent,parameterCountNow,parameterCountBefore,pageNumbers);
+
+            if (parameterCountNow!=parameterCountBefore){
                 parameterCountBefore=parameterCountNow;
-            }else if (pageCurrent>pageNumbers){
-                pageCurrent=0;
-            }else {
-                pageCurrent=pageCurrent-1;
             }
 
             PageRequest pageRequest=new PageRequest(pageCurrent,pageSize);
