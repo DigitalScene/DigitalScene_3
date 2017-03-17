@@ -1,5 +1,8 @@
 package cn.digitalScene.Model;
 
+import cn.digitalScene.Utils.ModuleStatus;
+import cn.digitalScene.Utils.TimeStringUtils;
+
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,128 +27,74 @@ public class Project {
 
     private Date createTime;//项目创建时间
 
-    private Integer status=0;//项目状态，整个项目是否完成 0为项目未开始，1为项目正在进行中，2为整个项目已完成
+    private Integer status=0;//项目状态，整个项目是否完成 0为项目未开始，3为项目正在进行中，6为整个项目已完成
 
     private Integer isDel=0;//是否删除 0为未删除，1为删除，默认为0不删除
 
     //必须模块，有一定的顺序流程 1->2->3->4->5
     //1.用户数据上传模块 dataUpload
-    private String dataUploadPeople="";//场景用户数据上传者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "dataupload_id")
+    private DataUpload dataUpload;
 
-    private Integer is_dataUploadPeople=0;//场景用户数据上传者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String dataUploadPeople_reason="";//场景用户数据上传者拒绝原因
-
-    private Date is_dataUploadPeopleDate;//场景用户数据上传者确认时间
-
-    private Date dataUploadFinishDate;//场景用户数据上传完成时间
-
-    private Integer is_dataUploadFinish=0;//场景用户数据上传完成(0为未开始，1为进行中，2为已完成)
+    private Integer is_dataUploadStatus=0;//场景用户数据上传状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //2.原始图片编辑模块 photoEdit
-    private String photoEditPeople="";//原始图片编辑者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "photoedit_id")
+    private PhotoEdit photoEdit;
 
-    private Integer is_photoEditPeople=0;//原始图片编辑者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String photoEditPeople_reason="";//原始图片编辑者拒绝原因
-
-    private Date is_photoEditPeopleDate;//原始图片编辑者确认时间
-
-    private Date photoEditFinishDate;//原始图片编辑完成时间
-
-    private Integer is_photoEditFinish=0;//原始图片编辑完成(0为未开始，1为进行中，2为已完成)
+    private Integer is_photoEditStatus=0;//原始图片编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //3.球形图制作模块 photoMade
-    private String photoMadePeople="";//球形图制作者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "photomade_id")
+    private PhotoMade photoMade;
 
-    private Integer is_photoMadePeople=0;//球形图制作者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String photoMadePeople_reason="";//球形图制作者拒绝原因
-
-    private Date is_photoMadePeopleDate;//球形图制作者确认时间
-
-    private Date photoMadeFinishDate;//球形图制作完成时间
-
-    private Integer is_photoMadeFinish=0;//球形图制作完成(0为未开始，1为进行中，2为已完成)
+    private Integer is_photoMadeStatus=0;//球形图制作状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //4.场景构建模块 sceneMade
-    private String sceneMadePeople="";//场景构建者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "scenemade_id")
+    private SceneMade sceneMade;
 
-    private Integer is_sceneMadePeople=0;//场景构建者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String sceneMadePeople_reason="";//场景构建者拒绝原因
-
-    private Date is_sceneMadePeopleDate;//场景构建者确认时间
-
-    private Date sceneMadeFinishDate;//场景构建完成时间
-
-    private Integer is_sceneMadeFinish=0;//场景构建完成(0为未开始，1为进行中，2为已完成)
+    private Integer is_sceneMadeStatus=0;//场景构建状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //5.数据整合模块 dataIntegration
-    private String dataIntegrationPeople="";//数据整合者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "dataintegration_id")
+    private DataIntegration dataIntegration;
 
-    private Integer is_dataIntegrationPeople=0;//数据整合者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String dataIntegrationPeople_reason="";//数据整合者拒绝原因
-
-    private Date is_dataIntegrationPeopleDate;//数据整合者确认时间
-
-    private Date dataIntegrationFinishDate;//数据整合完成时间
-
-    private Integer is_dataIntegrationFinish=0;//数据整合完成(0为未开始，1为进行中，2为已完成)
+    private Integer is_dataIntegrationStatus=0;//数据整合状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //非必须模块  没有一定的顺序流程，可能是同时进行 6,7,8,9
     //6.音频文件编辑模块 mp3Edit
-    private String mp3EditPeople="";//音频文件编辑者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "mp3edit_id")
+    private Mp3Edit mp3Edit;
 
-    private Integer is_mp3EditPeople=0;//音频文件编辑者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String mp3EditPeople_reason="";//音频文件编辑者拒绝原因
-
-    private Date is_mp3EditPeopleDate;//音频文件编辑者确认时间
-
-    private Date mp3EditFinishDate;//音频文件编辑完成时间
-
-    private Integer is_mp3EditFinish=3;//音频文件编辑完成(0为未开始，1为进行中，2为已完成，3为不需要)
+    private Integer is_mp3EditStatus=7;//音频文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //7.视频文件编辑模块 videoEdit
-    private String videoEditPeople="";//视频文件编辑者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "videoedit_id")
+    private VideoEdit videoEdit;
 
-    private Integer is_videoEditPeople=0;//视频文件编辑者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String videoEditPeople_reason="";//视频文件编辑者拒绝原因
-
-    private Date is_videoEditPeopleDate;//视频文件编辑者确认时间
-
-    private Date videoEditFinishDate;//视频文件编辑完成时间
-
-    private Integer is_videoEditFinish=3;//视频文件编辑完成(0为未开始，1为进行中，2为已完成，3为不需要)
+    private Integer is_videoEditStatus=7;//视频文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //8.3D模型制作模块 thrDModelMade
-    private String thrDModelMadePeople="";//3D模型制作者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "thrdmodelmade_id")
+    private ThrDModelMade thrDModelMade;
 
-    private Integer is_thrDModelMadePeople=0;//3D模型制作者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String thrDModelMadePeople_reason="";//3D模型制作者拒绝原因
-
-    private Date is_thrDModelMadePeopleDate;//3D模型制作者确认时间
-
-    private Date thrDModelMadeFinishDate;//3D模型制作完成时间
-
-    private Integer is_thrDModelMadeFinish=3;//3D模型制作完成(0为未开始，1为进行中，2为已完成，3为不需要)
+    private Integer is_thrDModelMadeStatus=7;//3D模型制作状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //9.字幕文件编辑模块 subtitleEdit
-    private String subtitleEditPeople="";//字幕文件编辑者
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "subtitleedit_id")
+    private SubtitleEdit subtitleEdit;
 
-    private Integer is_subtitleEditPeople=0;//字幕文件编辑者确认(0为未确认，1为确认接受，2为已拒绝)
-
-    private String subtitleEditPeople_reason="";//字幕文件编辑者拒绝原因
-
-    private Date is_subtitleEditPeopleDate;//字幕文件编辑者确认时间
-
-    private Date subtitleEditFinishDate;//字幕文件编辑完成时间
-
-    private Integer is_subtitleEditFinish=3;//字幕文件编辑完成(0为未开始，1为进行中，2为已完成，3为不需要)
+    private Integer is_subtitleEditStatus=7;//字幕文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
 
     public Project() {
@@ -208,8 +157,7 @@ public class Project {
     }
 
     public String getCreateTimeString(){
-        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return format.format(this.getCreateTime());
+        return TimeStringUtils.timeToString(this.getCreateTime());
     }
 
     public Integer getStatus() {
@@ -217,530 +165,192 @@ public class Project {
     }
 
     public String getProjectStatus() {
-        return ProjectStatus.getDescByValue(status);
+        return ModuleStatus.getDescByValue(status);
     }
 
     public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public String getDataUploadPeople() {
-        return dataUploadPeople;
+    public DataUpload getDataUpload() {
+        return dataUpload;
     }
 
-    public void setDataUploadPeople(String dataUploadPeople) {
-        this.dataUploadPeople = dataUploadPeople;
+    public void setDataUpload(DataUpload dataUpload) {
+        this.dataUpload = dataUpload;
     }
 
-    public Integer getIs_dataUploadPeople() {
-        return is_dataUploadPeople;
+    public SceneMade getSceneMade() {
+        return sceneMade;
     }
 
-    public void setIs_dataUploadPeople(Integer is_dataUploadPeople) {
-        this.is_dataUploadPeople = is_dataUploadPeople;
+    public void setSceneMade(SceneMade sceneMade) {
+        this.sceneMade = sceneMade;
     }
 
-    public String getDataUploadPeople_reason() {
-        return dataUploadPeople_reason;
+    public DataIntegration getDataIntegration() {
+        return dataIntegration;
     }
 
-    public void setDataUploadPeople_reason(String dataUploadPeople_reason) {
-        this.dataUploadPeople_reason = dataUploadPeople_reason;
+    public void setDataIntegration(DataIntegration dataIntegration) {
+        this.dataIntegration = dataIntegration;
     }
 
-    public Date getIs_dataUploadPeopleDate() {
-        return is_dataUploadPeopleDate;
+    public Mp3Edit getMp3Edit() {
+        return mp3Edit;
     }
 
-    public void setIs_dataUploadPeopleDate(Date is_dataUploadPeopleDate) {
-        this.is_dataUploadPeopleDate = is_dataUploadPeopleDate;
+    public void setMp3Edit(Mp3Edit mp3Edit) {
+        this.mp3Edit = mp3Edit;
     }
 
-    public Date getDataUploadFinishDate() {
-        return dataUploadFinishDate;
+    public VideoEdit getVideoEdit() {
+        return videoEdit;
     }
 
-    public void setDataUploadFinishDate(Date dataUploadFinishDate) {
-        this.dataUploadFinishDate = dataUploadFinishDate;
+    public void setVideoEdit(VideoEdit videoEdit) {
+        this.videoEdit = videoEdit;
     }
 
-    public Integer getIs_dataUploadFinish() {
-        return is_dataUploadFinish;
+    public ThrDModelMade getThrDModelMade() {
+        return thrDModelMade;
     }
 
-    public String getIs_dataUploadStatus() {
-        return ProjectStatus.getDescByValue(is_dataUploadFinish);
+    public void setThrDModelMade(ThrDModelMade thrDModelMade) {
+        this.thrDModelMade = thrDModelMade;
     }
 
-    public void setIs_dataUploadFinish(Integer is_dataUploadFinish) {
-        this.is_dataUploadFinish = is_dataUploadFinish;
+    public SubtitleEdit getSubtitleEdit() {
+        return subtitleEdit;
     }
 
-    public String getPhotoEditPeople() {
-        return photoEditPeople;
+    public void setSubtitleEdit(SubtitleEdit subtitleEdit) {
+        this.subtitleEdit = subtitleEdit;
     }
 
-    public void setPhotoEditPeople(String photoEditPeople) {
-        this.photoEditPeople = photoEditPeople;
+    public PhotoEdit getPhotoEdit() {
+        return photoEdit;
     }
 
-    public Integer getIs_photoEditPeople() {
-        return is_photoEditPeople;
+    public void setPhotoEdit(PhotoEdit photoEdit) {
+        this.photoEdit = photoEdit;
     }
 
-    public void setIs_photoEditPeople(Integer is_photoEditPeople) {
-        this.is_photoEditPeople = is_photoEditPeople;
+    public PhotoMade getPhotoMade() {
+        return photoMade;
     }
 
-    public String getPhotoEditPeople_reason() {
-        return photoEditPeople_reason;
+    public void setPhotoMade(PhotoMade photoMade) {
+        this.photoMade = photoMade;
     }
 
-    public void setPhotoEditPeople_reason(String photoEditPeople_reason) {
-        this.photoEditPeople_reason = photoEditPeople_reason;
+    public Integer getIs_dataUploadStatus() {
+        return is_dataUploadStatus;
     }
 
-    public Date getIs_photoEditPeopleDate() {
-        return is_photoEditPeopleDate;
+    public void setIs_dataUploadStatus(Integer is_dataUploadStatus) {
+        this.is_dataUploadStatus = is_dataUploadStatus;
     }
 
-    public void setIs_photoEditPeopleDate(Date is_photoEditPeopleDate) {
-        this.is_photoEditPeopleDate = is_photoEditPeopleDate;
+    public String getDataUploadStatus() {
+        return ModuleStatus.getDescByValue(is_dataUploadStatus);
     }
 
-    public Date getPhotoEditFinishDate() {
-        return photoEditFinishDate;
+    public Integer getIs_photoEditStatus() {
+        return is_photoEditStatus;
     }
 
-    public void setPhotoEditFinishDate(Date photoEditFinishDate) {
-        this.photoEditFinishDate = photoEditFinishDate;
+    public void setIs_photoEditStatus(Integer is_photoEditStatus) {
+        this.is_photoEditStatus = is_photoEditStatus;
     }
 
-    public Integer getIs_photoEditFinish() {
-        return is_photoEditFinish;
+    public String getPhotoEditStatus() {
+        return ModuleStatus.getDescByValue(is_photoEditStatus);
     }
 
-    public String getIs_photoEditStatus() {
-        return ProjectStatus.getDescByValue(is_photoEditFinish);
+    public Integer getIs_photoMadeStatus() {
+        return is_photoMadeStatus;
     }
 
-    public void setIs_photoEditFinish(Integer is_photoEditFinish) {
-        this.is_photoEditFinish = is_photoEditFinish;
+    public void setIs_photoMadeStatus(Integer is_photoMadeStatus) {
+        this.is_photoMadeStatus = is_photoMadeStatus;
     }
 
-    public String getPhotoMadePeople() {
-        return photoMadePeople;
+    public String getPhotoMadeStatus() {
+        return ModuleStatus.getDescByValue(is_photoMadeStatus);
     }
 
-    public void setPhotoMadePeople(String photoMadePeople) {
-        this.photoMadePeople = photoMadePeople;
+    public Integer getIs_sceneMadeStatus() {
+        return is_sceneMadeStatus;
     }
 
-    public Integer getIs_photoMadePeople() {
-        return is_photoMadePeople;
+    public void setIs_sceneMadeStatus(Integer is_sceneMadeStatus) {
+        this.is_sceneMadeStatus = is_sceneMadeStatus;
     }
 
-    public void setIs_photoMadePeople(Integer is_photoMadePeople) {
-        this.is_photoMadePeople = is_photoMadePeople;
+    public String getSceneMadeStatus() {
+        return ModuleStatus.getDescByValue(is_sceneMadeStatus);
     }
 
-    public String getPhotoMadePeople_reason() {
-        return photoMadePeople_reason;
+    public Integer getIs_dataIntegrationStatus() {
+        return is_dataIntegrationStatus;
     }
 
-    public void setPhotoMadePeople_reason(String photoMadePeople_reason) {
-        this.photoMadePeople_reason = photoMadePeople_reason;
+    public void setIs_dataIntegrationStatus(Integer is_dataIntegrationStatus) {
+        this.is_dataIntegrationStatus = is_dataIntegrationStatus;
     }
 
-    public Date getIs_photoMadePeopleDate() {
-        return is_photoMadePeopleDate;
+    public String getDataIntegrationStatus() {
+        return ModuleStatus.getDescByValue(is_dataIntegrationStatus);
     }
 
-    public void setIs_photoMadePeopleDate(Date is_photoMadePeopleDate) {
-        this.is_photoMadePeopleDate = is_photoMadePeopleDate;
+    public Integer getIs_mp3EditStatus() {
+        return is_mp3EditStatus;
     }
 
-    public Date getPhotoMadeFinishDate() {
-        return photoMadeFinishDate;
+    public void setIs_mp3EditStatus(Integer is_mp3EditStatus) {
+        this.is_mp3EditStatus = is_mp3EditStatus;
     }
 
-    public void setPhotoMadeFinishDate(Date photoMadeFinishDate) {
-        this.photoMadeFinishDate = photoMadeFinishDate;
+    public String getMp3EditStatus() {
+        return ModuleStatus.getDescByValue(is_mp3EditStatus);
     }
 
-    public Integer getIs_photoMadeFinish() {
-        return is_photoMadeFinish;
+    public Integer getIs_videoEditStatus() {
+        return is_videoEditStatus;
     }
 
-    public String getIs_photoMadeStatus() {
-        return ProjectStatus.getDescByValue(is_photoMadeFinish);
+    public void setIs_videoEditStatus(Integer is_videoEditStatus) {
+        this.is_videoEditStatus = is_videoEditStatus;
     }
 
-    public void setIs_photoMadeFinish(Integer is_photoMadeFinish) {
-        this.is_photoMadeFinish = is_photoMadeFinish;
+    public String getVideoEditStatus() {
+        return ModuleStatus.getDescByValue(is_videoEditStatus);
     }
 
-    public String getSceneMadePeople() {
-        return sceneMadePeople;
+    public Integer getIs_thrDModelMadeStatus() {
+        return is_thrDModelMadeStatus;
     }
 
-    public void setSceneMadePeople(String sceneMadePeople) {
-        this.sceneMadePeople = sceneMadePeople;
+    public void setIs_thrDModelMadeStatus(Integer is_thrDModelMadeStatus) {
+        this.is_thrDModelMadeStatus = is_thrDModelMadeStatus;
     }
 
-    public Integer getIs_sceneMadePeople() {
-        return is_sceneMadePeople;
+    public String getThrDModelMadeStatus() {
+        return ModuleStatus.getDescByValue(is_thrDModelMadeStatus);
     }
 
-    public void setIs_sceneMadePeople(Integer is_sceneMadePeople) {
-        this.is_sceneMadePeople = is_sceneMadePeople;
+    public Integer getIs_subtitleEditStatus() {
+        return is_subtitleEditStatus;
     }
 
-    public String getSceneMadePeople_reason() {
-        return sceneMadePeople_reason;
+    public void setIs_subtitleEditStatus(Integer is_subtitleEditStatus) {
+        this.is_subtitleEditStatus = is_subtitleEditStatus;
     }
 
-    public void setSceneMadePeople_reason(String sceneMadePeople_reason) {
-        this.sceneMadePeople_reason = sceneMadePeople_reason;
+    public String getSubtitleEditStatus() {
+        return ModuleStatus.getDescByValue(is_subtitleEditStatus);
     }
-
-    public Date getIs_sceneMadePeopleDate() {
-        return is_sceneMadePeopleDate;
-    }
-
-    public void setIs_sceneMadePeopleDate(Date is_sceneMadePeopleDate) {
-        this.is_sceneMadePeopleDate = is_sceneMadePeopleDate;
-    }
-
-    public Date getSceneMadeFinishDate() {
-        return sceneMadeFinishDate;
-    }
-
-    public void setSceneMadeFinishDate(Date sceneMadeFinishDate) {
-        this.sceneMadeFinishDate = sceneMadeFinishDate;
-    }
-
-    public Integer getIs_sceneMadeFinish() {
-        return is_sceneMadeFinish;
-    }
-
-    public String getIs_sceneMadeStatus() {
-        return ProjectStatus.getDescByValue(is_sceneMadeFinish);
-    }
-
-    public void setIs_sceneMadeFinish(Integer is_sceneMadeFinish) {
-        this.is_sceneMadeFinish = is_sceneMadeFinish;
-    }
-
-    public String getDataIntegrationPeople() {
-        return dataIntegrationPeople;
-    }
-
-    public void setDataIntegrationPeople(String dataIntegrationPeople) {
-        this.dataIntegrationPeople = dataIntegrationPeople;
-    }
-
-    public Integer getIs_dataIntegrationPeople() {
-        return is_dataIntegrationPeople;
-    }
-
-    public void setIs_dataIntegrationPeople(Integer is_dataIntegrationPeople) {
-        this.is_dataIntegrationPeople = is_dataIntegrationPeople;
-    }
-
-    public String getDataIntegrationPeople_reason() {
-        return dataIntegrationPeople_reason;
-    }
-
-    public void setDataIntegrationPeople_reason(String dataIntegrationPeople_reason) {
-        this.dataIntegrationPeople_reason = dataIntegrationPeople_reason;
-    }
-
-    public Date getIs_dataIntegrationPeopleDate() {
-        return is_dataIntegrationPeopleDate;
-    }
-
-    public void setIs_dataIntegrationPeopleDate(Date is_dataIntegrationPeopleDate) {
-        this.is_dataIntegrationPeopleDate = is_dataIntegrationPeopleDate;
-    }
-
-    public Date getDataIntegrationFinishDate() {
-        return dataIntegrationFinishDate;
-    }
-
-    public void setDataIntegrationFinishDate(Date dataIntegrationFinishDate) {
-        this.dataIntegrationFinishDate = dataIntegrationFinishDate;
-    }
-
-    public Integer getIs_dataIntegrationFinish() {
-        return is_dataIntegrationFinish;
-    }
-
-    public String getIs_dataIntegrationStatus() {
-        return ProjectStatus.getDescByValue(is_dataIntegrationFinish);
-    }
-
-    public void setIs_dataIntegrationFinish(Integer is_dataIntegrationFinish) {
-        this.is_dataIntegrationFinish = is_dataIntegrationFinish;
-    }
-
-    public String getMp3EditPeople() {
-        return mp3EditPeople;
-    }
-
-    public void setMp3EditPeople(String mp3EditPeople) {
-        this.mp3EditPeople = mp3EditPeople;
-    }
-
-    public Integer getIs_mp3EditPeople() {
-        return is_mp3EditPeople;
-    }
-
-    public void setIs_mp3EditPeople(Integer is_mp3EditPeople) {
-        this.is_mp3EditPeople = is_mp3EditPeople;
-    }
-
-    public String getMp3EditPeople_reason() {
-        return mp3EditPeople_reason;
-    }
-
-    public void setMp3EditPeople_reason(String mp3EditPeople_reason) {
-        this.mp3EditPeople_reason = mp3EditPeople_reason;
-    }
-
-    public Date getIs_mp3EditPeopleDate() {
-        return is_mp3EditPeopleDate;
-    }
-
-    public void setIs_mp3EditPeopleDate(Date is_mp3EditPeopleDate) {
-        this.is_mp3EditPeopleDate = is_mp3EditPeopleDate;
-    }
-
-    public Date getMp3EditFinishDate() {
-        return mp3EditFinishDate;
-    }
-
-    public void setMp3EditFinishDate(Date mp3EditFinishDate) {
-        this.mp3EditFinishDate = mp3EditFinishDate;
-    }
-
-    public Integer getIs_mp3EditFinish() {
-        return is_mp3EditFinish;
-    }
-
-    public String getIs_mp3EditStatus() {
-        return ProjectStatus.getDescByValue(is_mp3EditFinish);
-    }
-
-    public void setIs_mp3EditFinish(Integer is_mp3EditFinish) {
-        this.is_mp3EditFinish = is_mp3EditFinish;
-    }
-
-    public String getVideoEditPeople() {
-        return videoEditPeople;
-    }
-
-    public void setVideoEditPeople(String videoEditPeople) {
-        this.videoEditPeople = videoEditPeople;
-    }
-
-    public Integer getIs_videoEditPeople() {
-        return is_videoEditPeople;
-    }
-
-    public void setIs_videoEditPeople(Integer is_videoEditPeople) {
-        this.is_videoEditPeople = is_videoEditPeople;
-    }
-
-    public String getVideoEditPeople_reason() {
-        return videoEditPeople_reason;
-    }
-
-    public void setVideoEditPeople_reason(String videoEditPeople_reason) {
-        this.videoEditPeople_reason = videoEditPeople_reason;
-    }
-
-    public Date getIs_videoEditPeopleDate() {
-        return is_videoEditPeopleDate;
-    }
-
-    public void setIs_videoEditPeopleDate(Date is_videoEditPeopleDate) {
-        this.is_videoEditPeopleDate = is_videoEditPeopleDate;
-    }
-
-    public Date getVideoEditFinishDate() {
-        return videoEditFinishDate;
-    }
-
-    public void setVideoEditFinishDate(Date videoEditFinishDate) {
-        this.videoEditFinishDate = videoEditFinishDate;
-    }
-
-    public Integer getIs_videoEditFinish() {
-        return is_videoEditFinish;
-    }
-
-    public String getIs_videoEditStatus() {
-        return ProjectStatus.getDescByValue(is_videoEditFinish);
-    }
-
-    public void setIs_videoEditFinish(Integer is_videoEditFinish) {
-        this.is_videoEditFinish = is_videoEditFinish;
-    }
-
-    public String getThrDModelMadePeople() {
-        return thrDModelMadePeople;
-    }
-
-    public void setThrDModelMadePeople(String thrDModelMadePeople) {
-        this.thrDModelMadePeople = thrDModelMadePeople;
-    }
-
-    public Integer getIs_thrDModelMadePeople() {
-        return is_thrDModelMadePeople;
-    }
-
-    public void setIs_thrDModelMadePeople(Integer is_thrDModelMadePeople) {
-        this.is_thrDModelMadePeople = is_thrDModelMadePeople;
-    }
-
-    public String getThrDModelMadePeople_reason() {
-        return thrDModelMadePeople_reason;
-    }
-
-    public void setThrDModelMadePeople_reason(String thrDModelMadePeople_reason) {
-        this.thrDModelMadePeople_reason = thrDModelMadePeople_reason;
-    }
-
-    public Date getIs_thrDModelMadePeopleDate() {
-        return is_thrDModelMadePeopleDate;
-    }
-
-    public void setIs_thrDModelMadePeopleDate(Date is_thrDModelMadePeopleDate) {
-        this.is_thrDModelMadePeopleDate = is_thrDModelMadePeopleDate;
-    }
-
-    public Date getThrDModelMadeFinishDate() {
-        return thrDModelMadeFinishDate;
-    }
-
-    public void setThrDModelMadeFinishDate(Date thrDModelMadeFinishDate) {
-        this.thrDModelMadeFinishDate = thrDModelMadeFinishDate;
-    }
-
-    public Integer getIs_thrDModelMadeFinish() {
-        return is_thrDModelMadeFinish;
-    }
-
-    public String getIs_thrDModelMadeStatus() {
-        return ProjectStatus.getDescByValue(is_thrDModelMadeFinish);
-    }
-
-    public void setIs_thrDModelMadeFinish(Integer is_thrDModelMadeFinish) {
-        this.is_thrDModelMadeFinish = is_thrDModelMadeFinish;
-    }
-
-    public String getSubtitleEditPeople() {
-        return subtitleEditPeople;
-    }
-
-    public void setSubtitleEditPeople(String subtitleEditPeople) {
-        this.subtitleEditPeople = subtitleEditPeople;
-    }
-
-    public Integer getIs_subtitleEditPeople() {
-        return is_subtitleEditPeople;
-    }
-
-    public void setIs_subtitleEditPeople(Integer is_subtitleEditPeople) {
-        this.is_subtitleEditPeople = is_subtitleEditPeople;
-    }
-
-    public String getSubtitleEditPeople_reason() {
-        return subtitleEditPeople_reason;
-    }
-
-    public void setSubtitleEditPeople_reason(String subtitleEditPeople_reason) {
-        this.subtitleEditPeople_reason = subtitleEditPeople_reason;
-    }
-
-    public Date getIs_subtitleEditPeopleDate() {
-        return is_subtitleEditPeopleDate;
-    }
-
-    public void setIs_subtitleEditPeopleDate(Date is_subtitleEditPeopleDate) {
-        this.is_subtitleEditPeopleDate = is_subtitleEditPeopleDate;
-    }
-
-    public Date getSubtitleEditFinishDate() {
-        return subtitleEditFinishDate;
-    }
-
-    public void setSubtitleEditFinishDate(Date subtitleEditFinishDate) {
-        this.subtitleEditFinishDate = subtitleEditFinishDate;
-    }
-
-    public Integer getIs_subtitleEditFinish() {
-        return is_subtitleEditFinish;
-    }
-
-    public String getIs_subtitleEditStatus() {
-        return ProjectStatus.getDescByValue(is_subtitleEditFinish);
-    }
-
-    public void setIs_subtitleEditFinish(Integer is_subtitleEditFinish) {
-        this.is_subtitleEditFinish = is_subtitleEditFinish;
-    }
-
-    //枚举
-    public static enum ProjectStatus{
-         NOTSTART(0,"未开始"),PROGRESSING(1,"进行中"),FINISH(2,"已完成"),NONEED(3,"不需要");
-
-        private Integer value;
-        private String description;
-
-        ProjectStatus(Integer value, String description) {
-            this.value = value;
-            this.description = description;
-        }
-
-        public static ProjectStatus getByValue(Integer value){
-            for (ProjectStatus s:ProjectStatus.values()){
-                if (s.value.equals(value)){
-                    return s;
-                }
-            }
-            return null;
-        }
-
-        public static String getNameByValue(Integer value) {
-            ProjectStatus s = getByValue(value);
-            return s == null ? null : s.name();
-        }
-
-        public static String getDescByValue(Integer value) {
-            ProjectStatus s = getByValue(value);
-            return s == null ? null : s.getDescription();
-        }
-
-        public Integer getValue() {
-            return value;
-        }
-
-        public void setValue(Integer value) {
-            this.value = value;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-    }
-
-
 }
 
 

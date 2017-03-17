@@ -50,7 +50,7 @@
             <th class="project">3D模型制作</th>
             <th class="project">字幕编辑</th>
             <th data-order-field="status" class="project">状态</th>
-            <th class="project">操作</th>
+            <th class="project" style="width: 194px;">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -60,15 +60,15 @@
                 <td class="project">${list.projectName}</td>
                 <td class="project">${list.getCreateTimeString()}</td>
                 <td class="project">${list.creator}</td>
-                <td class="project">${list.getIs_dataUploadStatus()}</td>
-                <td class="project">${list.getIs_photoEditStatus()}</td>
-                <td class="project">${list.getIs_photoMadeStatus()}</td>
-                <td class="project">${list.getIs_sceneMadeStatus()}</td>
-                <td class="project">${list.getIs_dataIntegrationStatus()}</td>
-                <td class="project">${list.getIs_mp3EditStatus()}</td>
-                <td class="project">${list.getIs_videoEditStatus()}</td>
-                <td class="project">${list.getIs_thrDModelMadeStatus()}</td>
-                <td class="project">${list.getIs_subtitleEditStatus()}</td>
+                <td class="project">${list.getDataUploadStatus()}</td>
+                <td class="project">${list.getPhotoEditStatus()}</td>
+                <td class="project">${list.getPhotoMadeStatus()}</td>
+                <td class="project">${list.getSceneMadeStatus()}</td>
+                <td class="project">${list.getDataIntegrationStatus()}</td>
+                <td class="project">${list.getMp3EditStatus()}</td>
+                <td class="project">${list.getVideoEditStatus()}</td>
+                <td class="project">${list.getThrDModelMadeStatus()}</td>
+                <td class="project">${list.getSubtitleEditStatus()}</td>
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
                     <a href="${pageContext.request.contextPath}/project/startup?id=${list.id}" class="btn btn-info" data-toggle="doajax" data-confirm-msg="确定要启动项目么？" <c:if test="${list.status!=0}">disabled="disabled"</c:if> >启动项目</a>

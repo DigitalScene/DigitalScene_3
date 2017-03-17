@@ -1,9 +1,14 @@
 package cn.digitalScene.Controller;
 
-import cn.digitalScene.Model.Project;
+import cn.digitalScene.Model.*;
+import cn.digitalScene.Repository.Mp3EditRepository;
+import cn.digitalScene.Repository.SubtitleEditRepository;
+import cn.digitalScene.Repository.ThrDModelMadeRepository;
+import cn.digitalScene.Repository.VideoEditRepository;
 import cn.digitalScene.Service.ProjectService;
 import cn.digitalScene.Utils.ExecuteResult;
 import cn.digitalScene.Utils.PageUtils;
+import cn.digitalScene.Utils.TimeStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +32,14 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private Mp3EditRepository mp3EditRepository;
+    @Autowired
+    private VideoEditRepository videoEditRepository;
+    @Autowired
+    private ThrDModelMadeRepository thrDModelMadeRepository;
+    @Autowired
+    private SubtitleEditRepository subtitleEditRepository;
 
     //项目列表 搜索参数的数量
     private static int parameterCountBefore=0;
@@ -64,26 +77,27 @@ public class ProjectController {
     public Object add(Project project,String frontCreateTime,String[] nonessentialModels){
         try {
 
-            SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            project.setCreateTime(format.parse(frontCreateTime));
+            project.setCreateTime(TimeStringUtils.stringToTime(frontCreateTime));
 
             if (nonessentialModels!=null){
-                //选择可能保存的非必须模块
+
+                //选择可能保存的非必须模块，但尚未创建关联的实体类，可以在项目启动的时候创建，避免编辑的时候修改非必须模块
                 String noneNeed="";
                 for (String s:nonessentialModels){
                     noneNeed+=s+",";
                 }
+
                 if (noneNeed.contains("mp3Edit")){
-                    project.setIs_mp3EditFinish(0);
+                    project.setIs_mp3EditStatus(0);
                 }
                 if (noneNeed.contains("videoEdit")){
-                    project.setIs_videoEditFinish(0);
+                    project.setIs_videoEditStatus(0);
                 }
                 if (noneNeed.contains("thrDModelMade")){
-                    project.setIs_thrDModelMadeFinish(0);
+                    project.setIs_thrDModelMadeStatus(0);
                 }
                 if (noneNeed.contains("subtitleEdit")){
-                    project.setIs_subtitleEditFinish(0);
+                    project.setIs_subtitleEditStatus(0);
                 }
             }
 
@@ -103,7 +117,42 @@ public class ProjectController {
     @RequestMapping("/startup")
     public Object startup(Integer id){
         try {
-            projectService.updateStatusById(id);
+            //项目启动创建关联的实体类,避免添加或编辑操作时关联实体类丢失
+            Project project=projectService.findById(id);
+            //保存必须模块
+            DataUpload dataUpload=new DataUpload();
+            project.setDataUpload(dataUpload);
+
+            PhotoEdit photoEdit=new PhotoEdit();
+            project.setPhotoEdit(photoEdit);
+
+            PhotoMade photoMade=new PhotoMade();
+            project.setPhotoMade(photoMade);
+
+            SceneMade sceneMade=new SceneMade();
+            project.setSceneMade(sceneMade);
+
+            DataIntegration dataIntegration=new DataIntegration();
+            project.setDataIntegration(dataIntegration);
+
+            if (project.getIs_mp3EditStatus()==0){
+                Mp3Edit mp3Edit=new Mp3Edit();
+                project.setMp3Edit(mp3Edit);
+            }
+            if (project.getIs_videoEditStatus()==0){
+                VideoEdit videoEdit=new VideoEdit();
+                project.setVideoEdit(videoEdit);
+            }
+            if (project.getIs_thrDModelMadeStatus()==0){
+                ThrDModelMade thrDModelMade=new ThrDModelMade();
+                project.setThrDModelMade(thrDModelMade);
+            }
+            if (project.getIs_subtitleEditStatus()==0){
+                SubtitleEdit subtitleEdit=new SubtitleEdit();
+                project.setSubtitleEdit(subtitleEdit);
+            }
+            projectService.save(project);
+            projectService.startUpById(id);
             return executeResult.jsonReturn(200,false);
         } catch (Exception e) {
             return executeResult.jsonReturn(300,e.getMessage(),false);

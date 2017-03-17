@@ -128,4 +128,8 @@ public class UserService {
         adminRepository.suoJieDing(id,0);
     }
 
+    public List<User> findUsernameByStatus0AndUser(){
+        return adminRepository.findUsernameByStatus0AndUser();
+    }
+
 }

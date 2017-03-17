@@ -35,17 +35,30 @@
                       <div class="panel-body" >
                           <ul id="bjui-tree2" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true">
                               <li data-id="dataUpload" data-pid="1">1.数据上传模块</li>
-                              <li data-id="dataUpload_0" data-pid="dataUpload" data-url="<%=request.getContextPath()%>/admin/shop/list" data-tabid="dataUpload_0" data-fresh="true" data-reloadWarn="true">场景数据发布</li>
-                              <li data-id="dataUpload_1" data-pid="dataUpload" data-url="<%=request.getContextPath()%>/admin/shunShop/list" data-tabid="dataUpload_1" data-fresh="true" data-reloadWarn="true">瞬时秒杀</li>
-                              <li data-id="advert" data-pid="2">2.原始图编辑模块</li>
-                              <li data-id="advert_0" data-pid="advert" data-url="<%=request.getContextPath()%>/admin/advert/list" data-tabid="advert_0" data-fresh="true" data-reloadWarn="true">广告操作</li>
-                              <li data-id="firstPhoto" data-pid="3">3.球形图制作模块</li>
-                              <li data-id="firstPhoto_0" data-pid="firstPhoto" data-url="<%=request.getContextPath()%>/admin/firstPhoto/list" data-tabid="firstPhoto_0" data-fresh="true" data-reloadWarn="true">首页图片操作</li>
-                              <li data-id="adminOrder" data-pid="4">4.场景构建模块</li>
-                              <li data-id="adminOrder_0" data-pid="adminOrder" data-url="<%=request.getContextPath()%>/admin/orders/list" data-tabid="adminOrder_0" data-fresh="true" data-reloadWarn="true">订单列表</li>
-                              <li data-id="adminProfit" data-pid="5">5.数据整合模块</li>
-                              <li data-id="adminProfit_0" data-pid="adminProfit" data-url="<%=request.getContextPath()%>/admin/profit/list" data-tabid="adminProfit_0" data-fresh="true" data-reloadWarn="true">统计收益</li>
-                              <li data-id="adminProfit_1" data-pid="adminProfit" data-url="<%=request.getContextPath()%>/admin/profit/tiXian" data-tabid="adminProfit_1" data-fresh="true" data-reloadWarn="true">查看店主提现</li>
+                              <li data-id="dataUpload_0" data-pid="dataUpload" data-url="<%=request.getContextPath()%>/dataUpload/toAppointList" data-tabid="dataUpload_0" data-fresh="true" data-reloadWarn="true">待指派</li>
+                              <li data-id="dataUpload_1" data-pid="dataUpload" data-url="<%=request.getContextPath()%>/dataUpload/toDealWithList" data-tabid="dataUpload_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                              <li data-id="dataUpload_2" data-pid="dataUpload" data-url="<%=request.getContextPath()%>/dataUpload/toCheckList" data-tabid="dataUpload_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                              <li data-id="dataUpload_3" data-pid="dataUpload" data-url="<%=request.getContextPath()%>/dataUpload/toFinishList" data-tabid="dataUpload_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                              <li data-id="photoEdit" data-pid="2">2.原始图编辑模块</li>
+                              <li data-id="photoEdit_0" data-pid="photoEdit" data-url="<%=request.getContextPath()%>/photoEdit/toAppointList" data-tabid="photoEdit_0" data-fresh="true" data-reloadWarn="true">待指派</li>
+                              <li data-id="photoEdit_1" data-pid="photoEdit" data-url="<%=request.getContextPath()%>/photoEdit/toDealWithList" data-tabid="photoEdit_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                              <li data-id="photoEdit_2" data-pid="photoEdit" data-url="<%=request.getContextPath()%>/photoEdit/toCheckList" data-tabid="photoEdit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                              <li data-id="photoEdit_3" data-pid="photoEdit" data-url="<%=request.getContextPath()%>/photoEdit/toFinishList" data-tabid="photoEdit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                              <li data-id="photoMade" data-pid="3">3.球形图制作模块</li>
+                              <li data-id="photoMade_0" data-pid="photoMade" data-url="<%=request.getContextPath()%>/photoMade/toAppointList" data-tabid="photoMade_0" data-fresh="true" data-reloadWarn="true">待指派</li>
+                              <li data-id="photoMade_1" data-pid="photoMade" data-url="<%=request.getContextPath()%>/photoMade/toDealWithList" data-tabid="photoMade_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                              <li data-id="photoMade_2" data-pid="photoMade" data-url="<%=request.getContextPath()%>/photoMade/toCheckList" data-tabid="photoMade_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                              <li data-id="photoMade_3" data-pid="photoMade" data-url="<%=request.getContextPath()%>/photoMade/toFinishList" data-tabid="photoMade_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                              <li data-id="sceneMade" data-pid="4">4.场景构建模块</li>
+                              <li data-id="sceneMade_0" data-pid="sceneMade" data-url="<%=request.getContextPath()%>/sceneMade/toAppointList" data-tabid="sceneMade_0" data-fresh="true" data-reloadWarn="true">待指派</li>
+                              <li data-id="sceneMade_1" data-pid="sceneMade" data-url="<%=request.getContextPath()%>/sceneMade/toDealWithList" data-tabid="sceneMade_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                              <li data-id="sceneMade_2" data-pid="sceneMade" data-url="<%=request.getContextPath()%>/sceneMade/toCheckList" data-tabid="sceneMade_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                              <li data-id="sceneMade_3" data-pid="sceneMade" data-url="<%=request.getContextPath()%>/sceneMade/toFinishList" data-tabid="sceneMade_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                              <li data-id="dataIntegration" data-pid="5">5.数据整合模块</li>
+                              <li data-id="dataIntegration_0" data-pid="dataIntegration" data-url="<%=request.getContextPath()%>/dataIntegration/toAppointList" data-tabid="dataIntegration_0" data-fresh="true" data-reloadWarn="true">待指派</li>
+                              <li data-id="dataIntegration_1" data-pid="dataIntegration" data-url="<%=request.getContextPath()%>/dataIntegration/toDealWithList" data-tabid="dataIntegration_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                              <li data-id="dataIntegration_2" data-pid="dataIntegration" data-url="<%=request.getContextPath()%>/dataIntegration/toCheckList" data-tabid="dataIntegration_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                              <li data-id="dataIntegration_3" data-pid="dataIntegration" data-url="<%=request.getContextPath()%>/dataIntegration/toFinishList" data-tabid="dataIntegration_3" data-fresh="true" data-reloadWarn="true">已完成</li>
                           </ul>
                       </div>
                   </div>
@@ -60,18 +73,26 @@
                           <div id="bjui-collapse3" class="panel-collapse panelContent collapse">
                               <div class="panel-body" >
                                   <ul id="bjui-tree3" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true">
-                                      <li data-id="adminProfit1" data-pid="1">音频编辑模块</li>
-                                      <li data-id="adminProfit1_0" data-pid="adminProfit1" data-url="<%=request.getContextPath()%>/admin/profit/list" data-tabid="adminProfit1_0" data-fresh="true" data-reloadWarn="true">统计收益</li>
-                                      <li data-id="adminProfit1_1" data-pid="adminProfit1" data-url="<%=request.getContextPath()%>/admin/profit/tiXian" data-tabid="adminProfit1_1" data-fresh="true" data-reloadWarn="true">查看店主提现</li>
-                                      <li data-id="adminProfit2" data-pid="2">视频编辑模块</li>
-                                      <li data-id="adminProfit2_0" data-pid="adminProfit2" data-url="<%=request.getContextPath()%>/admin/profit/list" data-tabid="adminProfit2_0" data-fresh="true" data-reloadWarn="true">统计收益</li>
-                                      <li data-id="adminProfit2_1" data-pid="adminProfit2" data-url="<%=request.getContextPath()%>/admin/profit/tiXian" data-tabid="adminProfit2_1" data-fresh="true" data-reloadWarn="true">查看店主提现</li>
-                                      <li data-id="adminProfit3" data-pid="3">3D模型制作模块</li>
-                                      <li data-id="adminProfit3_0" data-pid="adminProfit3" data-url="<%=request.getContextPath()%>/admin/profit/list" data-tabid="adminProfit3_0" data-fresh="true" data-reloadWarn="true">统计收益</li>
-                                      <li data-id="adminProfit3_1" data-pid="adminProfit3" data-url="<%=request.getContextPath()%>/admin/profit/tiXian" data-tabid="adminProfit3_1" data-fresh="true" data-reloadWarn="true">查看店主提现</li>
-                                      <li data-id="adminProfit4" data-pid="4">字幕编辑模块</li>
-                                      <li data-id="adminProfit4_0" data-pid="adminProfit4" data-url="<%=request.getContextPath()%>/admin/profit/list" data-tabid="adminProfit4_0" data-fresh="true" data-reloadWarn="true">统计收益</li>
-                                      <li data-id="adminProfit4_1" data-pid="adminProfit4" data-url="<%=request.getContextPath()%>/admin/profit/tiXian" data-tabid="adminProfit4_1" data-fresh="true" data-reloadWarn="true">查看店主提现</li>
+                                      <li data-id="mp3Edit" data-pid="1">音频编辑模块</li>
+                                      <li data-id="mp3Edit_0" data-pid="mp3Edit" data-url="<%=request.getContextPath()%>/mp3Edit/toAppointList" data-tabid="mp3Edit_0" data-fresh="true" data-reloadWarn="true">待指派</li>
+                                      <li data-id="mp3Edit_1" data-pid="mp3Edit" data-url="<%=request.getContextPath()%>/mp3Edit/toDealWithList" data-tabid="mp3Edit_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="mp3Edit_2" data-pid="mp3Edit" data-url="<%=request.getContextPath()%>/mp3Edit/toCheckList" data-tabid="mp3Edit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                                      <li data-id="mp3Edit_3" data-pid="mp3Edit" data-url="<%=request.getContextPath()%>/mp3Edit/toFinishList" data-tabid="mp3Edit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                                      <li data-id="videoEdit" data-pid="2">视频编辑模块</li>
+                                      <li data-id="videoEdit_0" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toAppointList" data-tabid="videoEdit_0" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="videoEdit_1" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toDealWithList" data-tabid="videoEdit_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="videoEdit_2" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toCheckList" data-tabid="videoEdit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                                      <li data-id="videoEdit_3" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toFinishList" data-tabid="videoEdit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                                      <li data-id="thrDModelMade" data-pid="3">3D模型制作模块</li>
+                                      <li data-id="thrDModelMade_0" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toAppointList" data-tabid="thrDModelMade_0" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="thrDModelMade_1" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toDealWithList" data-tabid="thrDModelMade_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="thrDModelMade_2" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toCheckList" data-tabid="thrDModelMade_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                                      <li data-id="thrDModelMade_3" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toFinishList" data-tabid="thrDModelMade_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                                      <li data-id="subtitileEdit" data-pid="4">字幕编辑模块</li>
+                                      <li data-id="subtitileEdit_0" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toAppointList" data-tabid="subtitileEdit_0" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="subtitileEdit_1" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toDealWithList" data-tabid="subtitileEdit_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="subtitileEdit_2" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toCheckList" data-tabid="subtitileEdit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                                      <li data-id="subtitileEdit_3" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toFinishList" data-tabid="subtitileEdit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
                                   </ul>
                               </div>
                           </div>

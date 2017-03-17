@@ -34,6 +34,9 @@
 <!-- BJUI.all ��ģ��ѹ���� -->
 <!-- <script src="<%=request.getContextPath()%>/Static/BJUI/js/bjui-all.js"></script> -->
 
+
+<script src="<%=request.getContextPath()%>/asset/Static/Plugins/webuploader/webuploader.min.js"></script>
+
 <!-- ������B-JUI�ķ�ģ��δѹ���棬���鿪�����Խ׶�ʹ������İ汾 -->
 <script src="<%=request.getContextPath()%>/asset/Static/BJUI/js/bjui-core.js"></script>
 <script src="<%=request.getContextPath()%>/asset/Static/BJUI/js/bjui-regional.zh-CN.js"></script>
@@ -91,6 +94,7 @@
 <link href="<%=request.getContextPath()%>/asset/Static/BJUI/plugins/uploadify/css/uploadify.css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/asset/Static/BJUI/plugins/uploadify/scripts/jquery.uploadify.min.js"></script>
 <script src="<%=request.getContextPath()%>/asset/Static/Public/Js/functions.js"></script>
+
 <!-- init -->
 <script type="text/javascript">
     $(function() {

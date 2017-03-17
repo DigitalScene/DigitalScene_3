@@ -13,9 +13,9 @@
         <!-- 数据库表自动更新-->
         <property name="hibernate.hbm2ddl.auto" value="update"/>
         <!-- 数据库显示sql语句操作-->
-        <property name="hibernate.show_sql" value="false"/>
+        <property name="hibernate.show_sql" value="true"/>
         <!-- 数据库表sql格式化显示-->
-        <property name="hibernate.format_sql" value="false"/>
+        <property name="hibernate.format_sql" value="true"/>
 
         <property name="hibernate.jdbc.batch_size" value="10"/>
 

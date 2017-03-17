@@ -46,5 +46,6 @@ public interface UserRepository extends JpaRepository<User,String>,JpaSpecificat
     @Query("select o from User o where lower(o.username)=lower(:username) ")
     public User findByUsername(@Param("username")String username);
 
-
+    @Query("select o from User o,Role r where o.status=0 and o.id=r.user.id and r.role='user'")
+    public List<User> findUsernameByStatus0AndUser();
 }
