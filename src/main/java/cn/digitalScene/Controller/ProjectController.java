@@ -32,14 +32,6 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-    @Autowired
-    private Mp3EditRepository mp3EditRepository;
-    @Autowired
-    private VideoEditRepository videoEditRepository;
-    @Autowired
-    private ThrDModelMadeRepository thrDModelMadeRepository;
-    @Autowired
-    private SubtitleEditRepository subtitleEditRepository;
 
     //项目列表 搜索参数的数量
     private static int parameterCountBefore=0;

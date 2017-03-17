@@ -79,20 +79,20 @@
                                       <li data-id="mp3Edit_2" data-pid="mp3Edit" data-url="<%=request.getContextPath()%>/mp3Edit/toCheckList" data-tabid="mp3Edit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
                                       <li data-id="mp3Edit_3" data-pid="mp3Edit" data-url="<%=request.getContextPath()%>/mp3Edit/toFinishList" data-tabid="mp3Edit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
                                       <li data-id="videoEdit" data-pid="2">视频编辑模块</li>
-                                      <li data-id="videoEdit_0" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toAppointList" data-tabid="videoEdit_0" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="videoEdit_0" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toAppointList" data-tabid="videoEdit_0" data-fresh="true" data-reloadWarn="true">待指派</li>
                                       <li data-id="videoEdit_1" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toDealWithList" data-tabid="videoEdit_1" data-fresh="true" data-reloadWarn="true">待处理</li>
                                       <li data-id="videoEdit_2" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toCheckList" data-tabid="videoEdit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
                                       <li data-id="videoEdit_3" data-pid="videoEdit" data-url="<%=request.getContextPath()%>/videoEdit/toFinishList" data-tabid="videoEdit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
                                       <li data-id="thrDModelMade" data-pid="3">3D模型制作模块</li>
-                                      <li data-id="thrDModelMade_0" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toAppointList" data-tabid="thrDModelMade_0" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="thrDModelMade_0" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toAppointList" data-tabid="thrDModelMade_0" data-fresh="true" data-reloadWarn="true">待指派</li>
                                       <li data-id="thrDModelMade_1" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toDealWithList" data-tabid="thrDModelMade_1" data-fresh="true" data-reloadWarn="true">待处理</li>
                                       <li data-id="thrDModelMade_2" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toCheckList" data-tabid="thrDModelMade_2" data-fresh="true" data-reloadWarn="true">待审核</li>
                                       <li data-id="thrDModelMade_3" data-pid="thrDModelMade" data-url="<%=request.getContextPath()%>/thrDModelMade/toFinishList" data-tabid="thrDModelMade_3" data-fresh="true" data-reloadWarn="true">已完成</li>
                                       <li data-id="subtitileEdit" data-pid="4">字幕编辑模块</li>
-                                      <li data-id="subtitileEdit_0" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toAppointList" data-tabid="subtitileEdit_0" data-fresh="true" data-reloadWarn="true">待处理</li>
-                                      <li data-id="subtitileEdit_1" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toDealWithList" data-tabid="subtitileEdit_1" data-fresh="true" data-reloadWarn="true">待处理</li>
-                                      <li data-id="subtitileEdit_2" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toCheckList" data-tabid="subtitileEdit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
-                                      <li data-id="subtitileEdit_3" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitileEdit/toFinishList" data-tabid="subtitileEdit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
+                                      <li data-id="subtitileEdit_0" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitleEdit/toAppointList" data-tabid="subtitileEdit_0" data-fresh="true" data-reloadWarn="true">待指派</li>
+                                      <li data-id="subtitileEdit_1" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitleEdit/toDealWithList" data-tabid="subtitileEdit_1" data-fresh="true" data-reloadWarn="true">待处理</li>
+                                      <li data-id="subtitileEdit_2" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitleEdit/toCheckList" data-tabid="subtitileEdit_2" data-fresh="true" data-reloadWarn="true">待审核</li>
+                                      <li data-id="subtitileEdit_3" data-pid="subtitileEdit" data-url="<%=request.getContextPath()%>/subtitleEdit/toFinishList" data-tabid="subtitileEdit_3" data-fresh="true" data-reloadWarn="true">已完成</li>
                                   </ul>
                               </div>
                           </div>

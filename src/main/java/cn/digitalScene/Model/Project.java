@@ -73,28 +73,28 @@ public class Project {
     @JoinColumn(name = "mp3edit_id")
     private Mp3Edit mp3Edit;
 
-    private Integer is_mp3EditStatus=7;//音频文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
+    private Integer is_mp3EditStatus=6;//音频文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //7.视频文件编辑模块 videoEdit
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "videoedit_id")
     private VideoEdit videoEdit;
 
-    private Integer is_videoEditStatus=7;//视频文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
+    private Integer is_videoEditStatus=6;//视频文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //8.3D模型制作模块 thrDModelMade
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "thrdmodelmade_id")
     private ThrDModelMade thrDModelMade;
 
-    private Integer is_thrDModelMadeStatus=7;//3D模型制作状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
+    private Integer is_thrDModelMadeStatus=6;//3D模型制作状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
     //9.字幕文件编辑模块 subtitleEdit
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "subtitleedit_id")
     private SubtitleEdit subtitleEdit;
 
-    private Integer is_subtitleEditStatus=7;//字幕文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
+    private Integer is_subtitleEditStatus=6;//字幕文件编辑状态(0为未开始，1为待指派，2为指派中，3为进行中，4为待审核，5为已完成，6为不需要)
 
 
     public Project() {

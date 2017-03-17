@@ -93,7 +93,7 @@ public class CommonController {
         }else if (type.equals("thrDModelMade")){
             return "/page/admin/module/thrDModelMade/toReject";
         }else {
-            return "/page/admin/module/subtitleEdit/toAppoint";
+            return "/page/admin/module/subtitleEdit/toReject";
         }
 
     }

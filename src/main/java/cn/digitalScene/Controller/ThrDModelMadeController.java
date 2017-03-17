@@ -201,7 +201,7 @@ public class ThrDModelMadeController {
     public Object toReject(Integer id,String thrDModelMadePeopleReason){
         try {
             //1为3D模型制作模块的状态：待确认；2为3D模型制作模块is_thrDModelMadePeople拒绝状态
-            projectService.updateVideoEditStatusAndRejectById(id,1,2,thrDModelMadePeopleReason);
+            projectService.updateThrDModelMadeStatusAndRejectById(id,1,2,thrDModelMadePeopleReason);
             return executeResult.jsonReturn(200);
         } catch (Exception e) {
             return executeResult.jsonReturn(300,e.getMessage());
