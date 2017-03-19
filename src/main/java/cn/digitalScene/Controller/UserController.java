@@ -25,7 +25,7 @@ import java.util.List;
  * Created by 25065 on 2017/3/2.
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
     @Autowired

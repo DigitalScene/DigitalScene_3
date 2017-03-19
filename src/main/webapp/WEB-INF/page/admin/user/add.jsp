@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="bjui-pageContent">
-     <form action="${pageContext.request.contextPath}/user/add" data-toggle="validate" data-reload-navtab="true" method="post">
+     <form action="${pageContext.request.contextPath}/admin/user/add" data-toggle="validate" data-reload-navtab="true" method="post">
          <input type="hidden" name="id" value="${user.id}">
          <c:if test="${user!=null}">
              <input type="hidden" name="password" value="${user.password}">

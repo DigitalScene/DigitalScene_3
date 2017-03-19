@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -128,6 +130,18 @@ public class IndexController {
             return "page/login";
         }
 //        return "page/backIndex";
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login(){
+        return "/page/login";
+    }
+
+    @RequestMapping(value = "/fail",method = RequestMethod.GET)
+    public String fail(HttpServletRequest servletRequest, Model model){
+        String message=(String) servletRequest.getAttribute("message");
+        model.addAttribute("message",message);
+        return "/page/fail";
     }
 
     @RequestMapping("/changeRole")

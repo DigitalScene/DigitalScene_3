@@ -6,7 +6,7 @@
     .project{text-align: center;}
 </style>
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/sceneMade/toFinishList" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/admin/sceneMade/toFinishList" method="post">
         <input type="hidden" name="pageSize" value="${finishList.size}">
         <input type="hidden" name="pageNumbers" value="<fmt:formatNumber value='${finishList.totalElements/finishList.size+((finishList.totalElements/finishList.size)%1==0?0:0.5)}' type="number" pattern='#,###,###,###'/>">
         <input type="hidden" name="pageCurrent" value="${finishList.number+1}">
@@ -56,7 +56,7 @@
                 <td class="project">${list.getSceneMadeStatus()}</td>
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/sceneMade/toCheck?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true">查看详情</a>
+                    <a href="${pageContext.request.contextPath}/admin/sceneMade/toCheck?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true">查看详情</a>
                 </td>
             </tr>
         </c:forEach>

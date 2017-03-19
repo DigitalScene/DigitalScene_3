@@ -54,4 +54,6 @@
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="transcationManager"/>
 
+    <!--配置spring的过滤器-->
+    <bean id="permission" class="cn.digitalScene.Filter.PermissionFilter"/>
 </beans>

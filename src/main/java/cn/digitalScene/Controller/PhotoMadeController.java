@@ -1,6 +1,7 @@
 package cn.digitalScene.Controller;
 
 import cn.digitalScene.Model.Project;
+import cn.digitalScene.Model.User;
 import cn.digitalScene.Service.ProjectService;
 import cn.digitalScene.Service.UserService;
 import cn.digitalScene.Utils.ExecuteResult;
@@ -15,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 /**
  * Created by 25065 on 2017/3/13.
  */
 @Controller
-@RequestMapping("/photoMade")
+@RequestMapping("/admin/photoMade")
 public class PhotoMadeController {
 
     private ExecuteResult executeResult=new ExecuteResult();
@@ -106,15 +108,16 @@ public class PhotoMadeController {
      */
     @ResponseBody
     @RequestMapping(value = "/toAppoint",method = RequestMethod.POST)
-    public Object toAppoint(Integer id,String username){
+    public Object toAppoint(Integer id, String username, HttpSession session){
         try {
-            String toAppointPeople="admin(小白)";
+            User user=(User) session.getAttribute("loginUser");
+            String toAppointPeople=user.getUsername()+"("+user.getNickname()+")";
             Date toAppointDate=new Date();
             //2为球形图制作模块状态指派中
             projectService.updatePhotoMadeStatusByIdAndUsername(id,2,username,toAppointPeople,toAppointDate);
             return executeResult.jsonReturn(200);
         } catch (Exception e) {
-            return executeResult.jsonReturn(300,e.getMessage());
+            return executeResult.jsonReturn(300,"登录已过时，请重新登录!");
         }
     }
 

@@ -50,6 +50,24 @@ public class ExecuteResult {
         return jsonObj;
     }
 
+    public Map<String,Object> jsonReturnAndForward(int statusCode,String url){
+        Map<String,Object> jsonObj=new HashMap<String,Object>();
+
+        if (statusCode==200){
+            jsonObj.put("statusCode","200");
+            jsonObj.put("message","操作成功");
+            jsonObj.put("forward",url);
+            jsonObj.put("forwardConfirm","world");
+        }else if (statusCode==300){
+            jsonObj.put("statusCode","300");
+            jsonObj.put("message","操作失败，请重试");
+            jsonObj.put("forward",url);
+            jsonObj.put("forwardConfirm","hello");
+        }
+        jsonObj.put("closeCurrent",true);
+        return jsonObj;
+    }
+
     public Map<String,Object> jsonReturnAndRefreshDialogId(int statusCode, String dialogid){
         Map<String,Object> jsonObj=new HashMap<String,Object>();
 

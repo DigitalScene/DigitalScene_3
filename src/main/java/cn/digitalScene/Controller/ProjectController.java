@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
  * Created by 25065 on 2017/3/11.
  */
 @Controller
-@RequestMapping("/project")
+@RequestMapping("/admin/project")
 public class ProjectController {
 
     private ExecuteResult executeResult=new ExecuteResult();

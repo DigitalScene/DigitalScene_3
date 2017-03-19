@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="bjui-pageContent">
-     <form action="${pageContext.request.contextPath}/dataIntegration/toAppoint" data-toggle="validate" data-reload-navtab="true" method="post">
+     <form action="${pageContext.request.contextPath}/admin/dataIntegration/toAppoint" data-toggle="validate" data-reload-navtab="true" method="post">
          <input type="hidden" name="id" value="${id}">
          <div class="pageFormContent" data-layout-h="0">
              <table class="table table-condensed table-hover" width="100%">

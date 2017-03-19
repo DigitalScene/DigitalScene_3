@@ -15,7 +15,7 @@ import java.util.List;
  * Created by 25065 on 2017/3/16.
  */
 @Controller
-@RequestMapping("/common")
+@RequestMapping("/admin/common")
 public class CommonController {
 
     @Autowired

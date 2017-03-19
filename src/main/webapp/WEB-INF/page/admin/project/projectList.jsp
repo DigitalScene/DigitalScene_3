@@ -6,7 +6,7 @@
     .project{text-align: center;}
 </style>
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/project/projectList" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/admin/project/projectList" method="post">
         <input type="hidden" name="pageSize" value="${projectsList.size}">
         <input type="hidden" name="pageNumbers" value="<fmt:formatNumber value='${projectsList.totalElements/projectsList.size+((projectsList.totalElements/projectsList.size)%1==0?0:0.5)}' type="number" pattern='#,###,###,###'/>">
         <input type="hidden" name="pageCurrent" value="${projectsList.number+1}">
@@ -78,9 +78,9 @@
                 <td class="project">${list.getSubtitleEditStatus()}</td>
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/project/startup?id=${list.id}" class="btn btn-info" data-toggle="doajax" data-confirm-msg="确定要启动项目么？" <c:if test="${list.status!=0}">disabled="disabled"</c:if> >启动项目</a>
-                    <a href="${pageContext.request.contextPath}/project/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="900" data-height="360" data-id="dialog-mask" data-mask="true">编辑</a>
-                    <a href="${pageContext.request.contextPath}/project/delete?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除吗？">删除</a>
+                    <a href="${pageContext.request.contextPath}/admin/project/startup?id=${list.id}" class="btn btn-info" data-toggle="doajax" data-confirm-msg="确定要启动项目么？" <c:if test="${list.status!=0}">disabled="disabled"</c:if> >启动项目</a>
+                    <a href="${pageContext.request.contextPath}/admin/project/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="900" data-height="360" data-id="dialog-mask" data-mask="true">编辑</a>
+                    <a href="${pageContext.request.contextPath}/admin/project/delete?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除吗？">删除</a>
                 </td>
             </tr>
         </c:forEach>

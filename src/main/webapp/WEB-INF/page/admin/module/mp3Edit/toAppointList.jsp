@@ -6,7 +6,7 @@
     .project{text-align: center;}
 </style>
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/mp3Edit/toAppointList" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/admin/mp3Edit/toAppointList" method="post">
         <input type="hidden" name="pageSize" value="${appointList.size}">
         <input type="hidden" name="pageNumbers" value="<fmt:formatNumber value='${appointList.totalElements/appointList.size+((appointList.totalElements/appointList.size)%1==0?0:0.5)}' type="number" pattern='#,###,###,###'/>">
         <input type="hidden" name="pageCurrent" value="${appointList.number+1}">
@@ -46,7 +46,7 @@
                 <td class="project">${list.mp3Edit.mp3EditPeople_reason}</td>
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/common/module/toAppoint?id=${list.id}&type=mp3Edit" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="160" data-id="dialog-mask" data-mask="true">指派</a>
+                    <a href="${pageContext.request.contextPath}/admin/common/module/toAppoint?id=${list.id}&type=mp3Edit" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="160" data-id="dialog-mask" data-mask="true">指派</a>
                 </td>
             </tr>
         </c:forEach>

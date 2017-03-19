@@ -6,7 +6,7 @@
     .project{text-align: center;}
 </style>
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/photoEdit/toDealWithList" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/admin/photoEdit/toDealWithList" method="post">
         <input type="hidden" name="pageSize" value="${dealWithList.size}">
         <input type="hidden" name="pageNumbers" value="<fmt:formatNumber value='${dealWithList.totalElements/dealWithList.size+((dealWithList.totalElements/dealWithList.size)%1==0?0:0.5)}' type="number" pattern='#,###,###,###'/>">
         <input type="hidden" name="pageCurrent" value="${dealWithList.number+1}">
@@ -52,16 +52,16 @@
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
                     <c:if test="${list.photoEdit.is_photoEditPeople!=1}">
-                        <a href="${pageContext.request.contextPath}/photoEdit/toAccept?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要接受处理吗？">接受</a>
-                        <a href="${pageContext.request.contextPath}/common/module/toReject?id=${list.id}&type=photoEdit" class="btn btn-red" data-toggle="dialog" data-width="680" data-height="240" data-id="dialog-mask" data-mask="true">拒绝</a>
+                        <a href="${pageContext.request.contextPath}/admin/photoEdit/toAccept?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要接受处理吗？">接受</a>
+                        <a href="${pageContext.request.contextPath}/admin/common/module/toReject?id=${list.id}&type=photoEdit" class="btn btn-red" data-toggle="dialog" data-width="680" data-height="240" data-id="dialog-mask" data-mask="true">拒绝</a>
                     </c:if>
                     <c:if test="${list.photoEdit.is_photoEditPeople==1}">
                         已接受
                     </c:if>
                 </td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/photoEdit/toDealWith?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true" <c:if test="${list.photoEdit.is_photoEditPeople!=1}">disabled="disabled" </c:if> >处理</a>
-                    <a href="${pageContext.request.contextPath}/photoEdit/toDealWithFinish?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要处理完成吗？" <c:if test="${list.photoEdit.is_photoEditPeople!=1}">disabled="disabled" </c:if>>处理完成</a>
+                    <a href="${pageContext.request.contextPath}/admin/photoEdit/toDealWith?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true" <c:if test="${list.photoEdit.is_photoEditPeople!=1}">disabled="disabled" </c:if> >处理</a>
+                    <a href="${pageContext.request.contextPath}/admin/photoEdit/toDealWithFinish?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要处理完成吗？" <c:if test="${list.photoEdit.is_photoEditPeople!=1}">disabled="disabled" </c:if>>处理完成</a>
                 </td>
             </tr>
         </c:forEach>

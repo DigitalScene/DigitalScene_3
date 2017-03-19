@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/user/userList" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/admin/user/userList" method="post">
         <input type="hidden" name="pageSize" value="${userList.size}">
         <input type="hidden" name="pageNumbers" value="<fmt:formatNumber value='${userList.totalElements/userList.size+((userList.totalElements/userList.size)%1==0?0:0.5)}' type="number" pattern='#,###,###,###'/>">
         <input type="hidden" name="pageCurrent" value="${userList.number+1}">
@@ -52,13 +52,13 @@
                 <td><c:forEach items="${list.roleArrayList}" var="li"> ${li.getRoleName()}</c:forEach> </td>
                 <td><c:if test="${list.status==0}">正常</c:if><c:if test="${list.status==1}">锁定</c:if></td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/user/updatePassword?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="650" data-height="200" data-id="dialog-mask" data-mask="true">修改密码</a>
+                    <a href="${pageContext.request.contextPath}/admin/user/updatePassword?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="650" data-height="200" data-id="dialog-mask" data-mask="true">修改密码</a>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/user/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="880" data-height="270" data-id="dialog-mask" data-mask="true">编辑</a>
-                    <a href="${pageContext.request.contextPath}/user/jieSuo?id=${list.id}" class="btn btn-blue" data-toggle="doajax" data-confirm-msg="确定要解锁吗？">解锁</a>
-                    <a href="${pageContext.request.contextPath}/user/suoDing?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要锁定吗？">锁定</a>
-                    <a href="${pageContext.request.contextPath}/user/delete?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除吗？">删除</a>
+                    <a href="${pageContext.request.contextPath}/admin/user/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="880" data-height="270" data-id="dialog-mask" data-mask="true">编辑</a>
+                    <a href="${pageContext.request.contextPath}/admin/user/jieSuo?id=${list.id}" class="btn btn-blue" data-toggle="doajax" data-confirm-msg="确定要解锁吗？">解锁</a>
+                    <a href="${pageContext.request.contextPath}/admin/user/suoDing?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要锁定吗？">锁定</a>
+                    <a href="${pageContext.request.contextPath}/admin/user/delete?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除吗？">删除</a>
                 </td>
             </tr>
         </c:forEach>

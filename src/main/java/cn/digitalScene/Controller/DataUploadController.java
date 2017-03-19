@@ -21,6 +21,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,7 +33,7 @@ import java.util.UUID;
  * Created by 25065 on 2017/3/13.
  */
 @Controller
-@RequestMapping("/dataUpload")
+@RequestMapping("/admin/dataUpload")
 public class DataUploadController {
 
     private ExecuteResult executeResult=new ExecuteResult();
@@ -135,15 +136,16 @@ public class DataUploadController {
      */
     @ResponseBody
     @RequestMapping(value = "/toAppoint",method = RequestMethod.POST)
-    public Object toAppoint(Integer id,String username){
+    public Object toAppoint(Integer id, String username, HttpSession session){
         try {
-            String toAppointPeople="admin(小白)";
+            User user=(User) session.getAttribute("loginUser");
+            String toAppointPeople=user.getUsername()+"("+user.getNickname()+")";
             Date toAppointDate=new Date();
             //2为数据上传模块状态指派中
             projectService.updateDataUploadStatusByIdAndUsername(id,2,username,toAppointPeople,toAppointDate);
             return executeResult.jsonReturn(200);
         } catch (Exception e) {
-            return executeResult.jsonReturn(300,e.getMessage());
+            return executeResult.jsonReturn(300,"登录已过时，请重新登录!");
         }
     }
 

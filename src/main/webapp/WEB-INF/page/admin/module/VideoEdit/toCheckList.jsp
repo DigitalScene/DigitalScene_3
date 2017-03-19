@@ -6,7 +6,7 @@
     .project{text-align: center;}
 </style>
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/videoEdit/toCheckList" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${pageContext.request.contextPath}/admin/videoEdit/toCheckList" method="post">
         <input type="hidden" name="pageSize" value="${checkList.size}">
         <input type="hidden" name="pageNumbers" value="<fmt:formatNumber value='${checkList.totalElements/checkList.size+((checkList.totalElements/checkList.size)%1==0?0:0.5)}' type="number" pattern='#,###,###,###'/>">
         <input type="hidden" name="pageCurrent" value="${checkList.number+1}">
@@ -52,8 +52,8 @@
                 <td class="project">${list.getVideoEditStatus()}</td>
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/videoEdit/toCheck?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true"  >审核</a>
-                    <a href="${pageContext.request.contextPath}/videoEdit/toCheckFinish?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要审核完成吗？" >审核完成</a>
+                    <a href="${pageContext.request.contextPath}/admin/videoEdit/toCheck?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true"  >审核</a>
+                    <a href="${pageContext.request.contextPath}/admin/videoEdit/toCheckFinish?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要审核完成吗？" >审核完成</a>
                 </td>
             </tr>
         </c:forEach>
