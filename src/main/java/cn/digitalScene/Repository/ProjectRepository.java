@@ -26,6 +26,12 @@ public interface ProjectRepository extends JpaRepository<Project,String>,JpaSpec
     public void updateStatusById(@Param("id")Integer id);
 
     @Modifying
+    @Query("update Project o set o.status=5 where lower(o.id)=lower(:id) and o.is_dataIntegrationStatus=5 and (o.is_mp3EditStatus=5 or o.is_mp3EditStatus=6)" +
+            "and (o.is_videoEditStatus=5 or o.is_videoEditStatus=6) and (o.is_thrDModelMadeStatus=5 or o.is_thrDModelMadeStatus=6) and " +
+            "(o.is_subtitleEditStatus=5 or o.is_subtitleEditStatus=6) ")
+    public void updateProjectStatusToFinishById(@Param("id")Integer id);
+
+    @Modifying
     @Query("update Project o set o.is_mp3EditStatus=1 where lower(o.id)=lower(:id) and o.is_mp3EditStatus=0")
     public void updateMp3EditStatusById(@Param("id")Integer id);
 

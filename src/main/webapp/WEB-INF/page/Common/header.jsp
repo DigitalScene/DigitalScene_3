@@ -1,3 +1,5 @@
+<%@ page import="cn.digitalScene.Model.User" %>
+<%@ page import="cn.digitalScene.Model.Role" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--[if lte IE 7]>
     <div id="errorie"><div>您还在使用老掉牙的IE，正常使用系统前请升级您的浏览器到 IE8以上版本 <a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/ie-8-worldwide-languages">点击升级</a>&nbsp;&nbsp;强烈建议您更改换浏览器：<a href="http://down.tech.sina.com.cn/content/40975.html" target="_blank">谷歌 Chrome</a></div></div>
@@ -10,7 +12,7 @@
         <a class="bjui-navbar-logo" href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/asset/images/logo.png"></a>
     </div>
     <%
-        String headerType=(String) request.getAttribute("peopleType");
+        String roleType=(String) request.getAttribute("roleType");
     %>
     <nav id="bjui-navbar-collapse">
         <ul class="bjui-navbar-right">
@@ -18,12 +20,27 @@
                 <div><span id="bjui-date"></span>&nbsp;<i class="fa fa-clock-o"></i> <span id="bjui-clock"></span></div><br>
             </li>
             <!--<li><a href="#">消息 <span class="badge">0</span></a></li>-->
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">当前用户：${user.nickname}(管理员)<span class="caret"></span></a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">当前用户：${loginUser.username}(${loginUser.nickname})<%=Role.RoleName.getDescriptionByValue(roleType)%><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <%--<li><a href="{:U('User/User/modifyPwd')}" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="400" data-height="260">&nbsp;<span class="fa fa-lock"></span> 修改密码</a></li>--%>
 
 
-                        <li><a href="${pageContext.request.contextPath}/admin/add?id=${user.id}&type=admin&update=head" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="880" data-height="280">&nbsp;<span class="fa fa-user"></span> 我的资料</a></li>
+                        <%--<li><a href="#" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="880" data-height="280">&nbsp;<span class="fa fa-user"></span> 我的资料</a></li>--%>
+
+                         <%
+                             User user=(User)request.getAttribute("loginUser");
+                             for (Role role:user.getRoleArrayList()){
+                                 if (role.getRole().equals(roleType)){
+                         %>
+                        <li><a href="#" >&nbsp;<span class="fa fa-user"></span>&nbsp;<%=role.getRoleName()%></a></li>
+                         <%
+                                 }else {
+                                     %>
+                        <li><a href="${pageContext.request.contextPath}/changeRole?role=<%=role.getRole()%>" >&nbsp;<span class="fa fa-user"></span>&nbsp;<%=role.getRoleName()%></a></li>
+                         <%
+                                 }
+                             }
+                         %>
 
                     <!--li><a href="{:U('User/Index/cache')}" data-toggle="navtab">&nbsp;<span class="fa fa-trash"></span> 清理缓存</a></li-->
                     <li class="divider"></li>

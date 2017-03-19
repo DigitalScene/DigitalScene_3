@@ -51,6 +51,14 @@
                                <input type="radio" name="status" data-toggle="icheck" data-label="锁定" value="1" <c:if test="${user.status==1}">checked</c:if>/>
                            </td>
                        </tr>
+                       <tr>
+                           <td colspan="2">
+                               <label class="control-label x120"></label>
+                               <div style="display: inline-block;padding: 10px;line-height: 24px;margin: 10px 0;border: 2px dashed #1F73B6">
+                                   温馨提示：角色更改在该用户下次登录时才会生效
+                               </div>
+                           </td>
+                       </tr>
                  </tbody>
              </table>
          </div>

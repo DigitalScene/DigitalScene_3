@@ -106,13 +106,13 @@
         <div class="login_logo">
             <img src="${pageContext.request.contextPath}/asset/images/logo.png" >
         </div>
-        <!--
+
 		<c:if test="${!empty message}">
 			<div class="login_msg">
-	      		<font color="red">${message }</font>
+	      		<span style="color:red;" >${message }</span>
 	    	</div>
 	    </c:if>
-        -->
+
         <div class="login_form">
             <input type="hidden" value="${randomKey }" id="j_randomKey" />
             <form action="${pageContext.request.contextPath}/login" id="login_form" method="post">
@@ -128,6 +128,11 @@
                     <label for="j_captcha" class="t">验证码：</label>
                     <input id="j_captcha" name="authCode" type="text" class="form-control x164 in">
                     <img id="captcha_img" src="${pageContext.request.contextPath}/validatecode" alt="点击更换" title="点击更换" width="100" height="20" align='absMiddle' class="m" />
+                </div>
+                <div class="form-group">
+                    <label class="t"></label>
+                    <input  name="roleType" type="radio" style="width: 16px;height: 16px;" value="user" checked>&nbsp;普通用户　　
+                    <input  name="roleType" type="radio" style="width: 16px;height: 16px;" value="admin">&nbsp;管理员
                 </div>
                 <div class="form-group space">
                     <label class="t"></label>　　　

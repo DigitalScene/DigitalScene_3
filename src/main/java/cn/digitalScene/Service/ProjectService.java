@@ -63,7 +63,7 @@ public class ProjectService {
 
     //查找已完成的项目
     public Page<Project> findAllByIsDel0(final String projectName, final String createTime, String orderField, String orderDirection, PageRequest pageRequest) throws Exception{
-        return this.findAllByIsDel0(projectName, createTime, 6,orderField, orderDirection, pageRequest);
+        return this.findAllByIsDel0(projectName, createTime, 5,orderField, orderDirection, pageRequest);
     }
 
     public Page<Project> findAllByIsDel0(final String projectName, final String createTime, final Integer status,final String is_dataUploadStatus,
@@ -450,6 +450,7 @@ public class ProjectService {
     @Transactional
     public void updateDaInStatusToCheckFinishById(Integer id,Integer status,String checkPeople,Date toCheckDate){
         projectRepository.updateDataIntegrationStatusById(id,status);
+        projectRepository.updateProjectStatusToFinishById(id);
         dataIntegrationRepository.updateCheckByProjectId(id,checkPeople,toCheckDate);
     }
 
@@ -483,6 +484,7 @@ public class ProjectService {
     @Transactional
     public void updateMp3EditStatusToCheckFinishById(Integer id,Integer status,String checkPeople,Date toCheckDate){
         projectRepository.updateMp3EditStatusById(id,status);
+        projectRepository.updateProjectStatusToFinishById(id);
         mp3EditRepository.updateCheckByProjectId(id,checkPeople,toCheckDate);
     }
 
@@ -516,6 +518,7 @@ public class ProjectService {
     @Transactional
     public void updateVideoEditStatusToCheckFinishById(Integer id,Integer status,String checkPeople,Date toCheckDate){
         projectRepository.updateVideoEditStatusById(id,status);
+        projectRepository.updateProjectStatusToFinishById(id);
         videoEditRepository.updateCheckByProjectId(id,checkPeople,toCheckDate);
     }
 
@@ -549,6 +552,7 @@ public class ProjectService {
     @Transactional
     public void updateThrDModelMadeStatusToCheckFinishById(Integer id,Integer status,String checkPeople,Date toCheckDate){
         projectRepository.updateThrDModelMadeStatusById(id,status);
+        projectRepository.updateProjectStatusToFinishById(id);
         thrDModelMadeRepository.updateCheckByProjectId(id,checkPeople,toCheckDate);
     }
 
@@ -582,6 +586,7 @@ public class ProjectService {
     @Transactional
     public void updateSubtitleEditStatusToCheckFinishById(Integer id,Integer status,String checkPeople,Date toCheckDate){
         projectRepository.updateSubtitleEditStatusById(id,status);
+        projectRepository.updateProjectStatusToFinishById(id);
         subtitleEditRepository.updateCheckByProjectId(id,checkPeople,toCheckDate);
     }
 }

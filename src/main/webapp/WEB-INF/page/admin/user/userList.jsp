@@ -22,7 +22,7 @@
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
             <div class="pull-right">
                 <div class="btn-group">
-                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/user/add" data-toggle="dialog" data-width="880" data-height="280" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i>添加用户</a></button>
+                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/user/add" data-toggle="dialog" data-width="880" data-height="340" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i>添加用户</a></button>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <td>${i.index+1}</td>
                 <td>${list.username}</td>
                 <td>${list.nickname}</td>
-                <td><c:forEach items="${list.roleArrayList}" var="li"> <c:if test="${li.role.equals('admin')}">管理员</c:if>  <c:if test="${li.role.equals('user')}">普通用户</c:if> </c:forEach> </td>
+                <td><c:forEach items="${list.roleArrayList}" var="li"> ${li.getRoleName()}</c:forEach> </td>
                 <td><c:if test="${list.status==0}">正常</c:if><c:if test="${list.status==1}">锁定</c:if></td>
                 <td>
                     <a href="${pageContext.request.contextPath}/user/updatePassword?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="650" data-height="200" data-id="dialog-mask" data-mask="true">修改密码</a>
