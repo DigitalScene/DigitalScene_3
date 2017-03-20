@@ -302,9 +302,10 @@ public class DataIntegrationController {
      */
     @ResponseBody
     @RequestMapping("/toCheckFinish")
-    public Object toCheckFinish(Integer id){
+    public Object toCheckFinish(Integer id,HttpSession session){
         try {
-            String checkPeople="admin(小白)";
+            User user=(User) session.getAttribute("loginUser");
+            String checkPeople=user.getUsername()+"("+user.getNickname()+")";
             Date toCheckDate=new Date();
             //5为数据整合模块状态为已完成
             projectService.updateDaInStatusToCheckFinishById(id,5,checkPeople,toCheckDate);

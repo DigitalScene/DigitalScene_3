@@ -302,9 +302,10 @@ public class VideoEditController {
      */
     @ResponseBody
     @RequestMapping("/toCheckFinish")
-    public Object toCheckFinish(Integer id){
+    public Object toCheckFinish(Integer id,HttpSession session){
         try {
-            String checkPeople="admin(小白)";
+            User user=(User) session.getAttribute("loginUser");
+            String checkPeople=user.getUsername()+"("+user.getNickname()+")";
             Date toCheckDate=new Date();
             //5为视频模块状态为已完成
             projectService.updateVideoEditStatusToCheckFinishById(id,5,checkPeople,toCheckDate);

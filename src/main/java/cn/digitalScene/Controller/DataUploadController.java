@@ -318,9 +318,10 @@ public class DataUploadController {
 
     @ResponseBody
     @RequestMapping("/toCheckFinish")
-    public Object toCheckFinish(Integer id){
+    public Object toCheckFinish(Integer id,HttpSession session){
         try {
-            String checkPeople="admin(小白)";
+            User user=(User) session.getAttribute("loginUser");
+            String checkPeople=user.getUsername()+"("+user.getNickname()+")";
             Date toCheckDate=new Date();
             //5为数据上传状态为已完成，同时启动原始图编辑图状态，1为待指派
             projectService.updateDaUpStatusToCheckFinishById(id,5,1,checkPeople,toCheckDate);

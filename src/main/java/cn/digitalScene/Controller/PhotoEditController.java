@@ -315,9 +315,10 @@ public class PhotoEditController {
      */
     @ResponseBody
     @RequestMapping("/toCheckFinish")
-    public Object toCheckFinish(Integer id){
+    public Object toCheckFinish(Integer id,HttpSession session){
         try {
-            String checkPeople="admin(小白)";
+            User user=(User) session.getAttribute("loginUser");
+            String checkPeople=user.getUsername()+"("+user.getNickname()+")";
             Date toCheckDate=new Date();
             //5为原始图编辑状态为已完成，同时启动球形图制作模块状态，1为待指派
             projectService.updatePhEdStatusToCheckFinishById(id,5,1,checkPeople,toCheckDate);
