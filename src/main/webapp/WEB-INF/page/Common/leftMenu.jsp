@@ -146,7 +146,7 @@
                     <div class="panel-body" >
                         <ul id="bjui-tree4" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true">
                             <li data-id="admin" data-pid="1">人员管理</li>
-                            <li data-id="admin_0" data-pid="admin" data-url="<%=request.getContextPath()%>/user/userList" data-tabid="admin_0" data-fresh="true" data-reloadWarn="true">人员操作</li>
+                            <li data-id="admin_0" data-pid="admin" data-url="<%=request.getContextPath()%>/admin/user/userList" data-tabid="admin_0" data-fresh="true" data-reloadWarn="true">人员操作</li>
                         </ul>
                     </div>
                 </div>
