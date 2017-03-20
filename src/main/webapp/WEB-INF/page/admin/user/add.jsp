@@ -12,14 +12,14 @@
                        <tr>
                            <td colspan="2">
                                <label class="control-label x100">用户名：</label>
-                               <input type="text" data-rule="required" id="username" name="username" value="${user.username}" size="40">
+                               <input type="text" data-rule="required" id="username" name="username" value="${user.username}" <c:if test="${user!=null}">readonly</c:if>  size="40">
                                <a href="#" id="checkUsername" ><input type="button" value="检测用户名是否已存在"></a>
                            </td>
                        </tr>
                        <tr>
                            <td colspan="2">
                                <label class="control-label x100">昵称：</label>
-                               <input type="text" data-rule="required" name="nickname" value="${user.nickname}" size="40">
+                               <input type="text" data-rule="required" name="nickname" value="${user.nickname}" <c:if test="${user!=null}">readonly</c:if> size="40">
                            </td>
                        </tr>
                        <c:if test="${user==null}">
@@ -55,7 +55,10 @@
                            <td colspan="2">
                                <label class="control-label x120"></label>
                                <div style="display: inline-block;padding: 10px;line-height: 24px;margin: 10px 0;border: 2px dashed #1F73B6">
-                                   温馨提示：角色更改在该用户下次登录时才会生效
+                                   温馨提示：<br/>
+                                   1.角色更改在该用户下次登录时才会生效。<br/>
+                                   2.用户名建议采用字母和数字，用汉字可能会乱码。<br/>
+                                   3.用户名和昵称一旦确立，不允许修改，避免项目流程中人员名称变动。<br/>
                                </div>
                            </td>
                        </tr>
@@ -75,7 +78,7 @@
 //        alert("hello");
         $.ajax({
             type:"POST",
-            url:"${pageContext.request.contextPath}"+"/user/checkUsername",
+            url:"${pageContext.request.contextPath}"+"/admin/user/checkUsername",
             dataType:"json",
             data:{
                 username:$("#username").val()

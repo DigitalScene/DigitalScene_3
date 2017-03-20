@@ -89,7 +89,7 @@ public class VideoEditController {
 
             PageRequest pageRequest=new PageRequest(pageCurrent,pageSize);
 
-            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"1",null,null,orderField,orderDirection,pageRequest);
+            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"1",null,null,null,null,orderField,orderDirection,pageRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,7 +140,11 @@ public class VideoEditController {
                                 @RequestParam(value = "pageCurrent",required = false)Integer pageCurrent,
                                 @RequestParam(value = "orderField",required = false)String orderField,
                                 @RequestParam(value = "orderDirection",required = false)String orderDirection,
-                                Model model){
+                                Model model,HttpSession session){
+
+        User user=(User) session.getAttribute("loginUser");
+
+        String people=user.getUsername()+"("+user.getNickname()+")";
 
         Page<Project> projectsList=null;
 
@@ -167,7 +171,7 @@ public class VideoEditController {
 
             PageRequest pageRequest=new PageRequest(pageCurrent,pageSize);
 
-            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"2,3",null,null,orderField,orderDirection,pageRequest);
+            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"2,3",null,null,people,"videoEdit",orderField,orderDirection,pageRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -287,7 +291,7 @@ public class VideoEditController {
 
             PageRequest pageRequest=new PageRequest(pageCurrent,pageSize);
 
-            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"4",null,null,orderField,orderDirection,pageRequest);
+            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"4",null,null,null,null,orderField,orderDirection,pageRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -335,7 +339,18 @@ public class VideoEditController {
                               @RequestParam(value = "pageCurrent",required = false)Integer pageCurrent,
                               @RequestParam(value = "orderField",required = false)String orderField,
                               @RequestParam(value = "orderDirection",required = false)String orderDirection,
-                              Model model){
+                              Model model,HttpSession session){
+
+        String roleType=(String)session.getAttribute("roleType");
+        String people=null;
+        String moduleType=null;
+        //普通用户，需要根据登陆者搜索该用户拥有的项目
+        if (roleType.equals("user")){
+            User user=(User) session.getAttribute("loginUser");
+            people=user.getUsername()+"("+user.getNickname()+")";
+            moduleType="videoEdit";
+        }
+
         Page<Project> projectsList=null;
 
         try {
@@ -361,7 +376,7 @@ public class VideoEditController {
 
             PageRequest pageRequest=new PageRequest(pageCurrent,pageSize);
 
-            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"5",null,null,orderField,orderDirection,pageRequest);
+            projectsList=projectService.findAllByIsDel0(projectName,createTime,null,null,null,null,null,null,null,"5",null,null,people,moduleType,orderField,orderDirection,pageRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }

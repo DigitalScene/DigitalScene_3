@@ -22,6 +22,8 @@ public class User {
 
     private Integer status;//状态，0正常，1锁定
 
+    private Integer isDel=0;//删除，0存在，1删除
+
     @OneToMany(cascade = {CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE},fetch = FetchType.LAZY,mappedBy = "user")
     private List<Role> roleArrayList=new ArrayList<>();
 
@@ -86,5 +88,13 @@ public class User {
     public void addRoleArrayList(Role role){
         role.setUser(this);
         this.getRoleArrayList().add(role);
+    }
+
+    public Integer getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(Integer isDel) {
+        this.isDel = isDel;
     }
 }

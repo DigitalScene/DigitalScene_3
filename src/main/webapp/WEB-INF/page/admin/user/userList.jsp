@@ -22,7 +22,7 @@
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
             <div class="pull-right">
                 <div class="btn-group">
-                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/user/add" data-toggle="dialog" data-width="880" data-height="340" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i>添加用户</a></button>
+                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/admin/user/add" data-toggle="dialog" data-width="880" data-height="410" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i>添加用户</a></button>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                     <a href="${pageContext.request.contextPath}/admin/user/updatePassword?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="650" data-height="200" data-id="dialog-mask" data-mask="true">修改密码</a>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/admin/user/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="880" data-height="270" data-id="dialog-mask" data-mask="true">编辑</a>
+                    <a href="${pageContext.request.contextPath}/admin/user/add?id=${list.id}" class="btn btn-default" data-toggle="dialog" data-width="880" data-height="360" data-id="dialog-mask" data-mask="true">编辑</a>
                     <a href="${pageContext.request.contextPath}/admin/user/jieSuo?id=${list.id}" class="btn btn-blue" data-toggle="doajax" data-confirm-msg="确定要解锁吗？">解锁</a>
                     <a href="${pageContext.request.contextPath}/admin/user/suoDing?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要锁定吗？">锁定</a>
                     <a href="${pageContext.request.contextPath}/admin/user/delete?id=${list.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除吗？">删除</a>

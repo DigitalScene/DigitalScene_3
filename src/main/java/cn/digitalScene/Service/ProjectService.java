@@ -58,7 +58,7 @@ public class ProjectService {
 
     //查找所有项目
     public Page<Project> findAllByIsDel0(final String projectName, final String createTime,final Integer status,  String orderField, String orderDirection, PageRequest pageRequest) throws Exception{
-        return this.findAllByIsDel0(projectName, createTime, status,null,null,null,null,null,null,null,null,null,orderField, orderDirection, pageRequest);
+        return this.findAllByIsDel0(projectName, createTime, status,null,null,null,null,null,null,null,null,null,null,null,orderField, orderDirection, pageRequest);
     }
 
     //查找已完成的项目
@@ -66,9 +66,9 @@ public class ProjectService {
         return this.findAllByIsDel0(projectName, createTime, 5,orderField, orderDirection, pageRequest);
     }
 
-    public Page<Project> findAllByIsDel0(final String projectName, final String createTime, final Integer status,final String is_dataUploadStatus,
-                                         final String is_photoEditStatus,final String is_photoMadeStatus,final String is_sceneMadeStatus,final String is_dataIntegrationStatus,
-                                         final String is_mp3EditStatus,final String is_videoEditStatus,final String is_thrDModelMadeStatus,final String is_subtitleEditStatus,
+    public Page<Project> findAllByIsDel0(final String projectName, final String createTime, final Integer status,final String is_dataUploadStatus, final String is_photoEditStatus,
+                                         final String is_photoMadeStatus,final String is_sceneMadeStatus,final String is_dataIntegrationStatus, final String is_mp3EditStatus,
+                                         final String is_videoEditStatus,final String is_thrDModelMadeStatus,final String is_subtitleEditStatus,final String people,final String moduleType,
                                          String orderField, String orderDirection, PageRequest pageRequest) throws Exception{
         Specification<Project> projectSpecification=new Specification<Project>() {
             @Override
@@ -107,6 +107,7 @@ public class ProjectService {
                     predicate=criteriaBuilder.equal(root.get("status"),status);
                     predicateList.add(criteriaBuilder.and(predicate));
                 }
+
                 //1.数据上传模块状态
                 if (is_dataUploadStatus!=null&&!is_dataUploadStatus.equals("")){
                     if (StringUtils.isInteger(is_dataUploadStatus)){
@@ -240,6 +241,82 @@ public class ProjectService {
                         predicateList.add(criteriaBuilder.and(predicate));
                     }
 
+                }
+
+                //多表关联查询
+                if (moduleType!=null&&!moduleType.equals("")){
+                    //1.数据上传者 dataUpload
+                    if (moduleType.equals("dataUpload")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("dataUpload").get("dataUploadPeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //2.原始图编辑 photoEdit
+                    if (moduleType.equals("photoEdit")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("photoEdit").get("photoEditPeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //3.球形图制作 photoMade
+                    if (moduleType.equals("photoMade")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("photoMade").get("photoMadePeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //4.场景构建 sceneMade
+                    if (moduleType.equals("sceneMade")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("sceneMade").get("sceneMadePeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //5.数据整合 dataIntegration
+                    if (moduleType.equals("dataIntegration")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("dataIntegration").get("dataIntegrationPeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //6.音频编辑 mp3Edit
+                    if (moduleType.equals("mp3Edit")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("mp3Edit").get("mp3EditPeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //7.视频编辑 videoEdit
+                    if (moduleType.equals("videoEdit")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("videoEdit").get("videoEditPeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //8.3D模型制作 thrDModelMade
+                    if (moduleType.equals("thrDModelMade")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("thrDModelMade").get("thrDModelMadePeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
+                    //9.字幕编辑
+                    if (moduleType.equals("subtitleEdit")){
+                        if (people!=null&&!people.equals("")){
+                            Path<String> stringPath=root.get("subtitleEdit").get("subtitleEditPeople");
+                            predicate=criteriaBuilder.equal(stringPath,people);
+                            predicateList.add(criteriaBuilder.and(predicate));
+                        }
+                    }
                 }
 
                  criteriaQuery.where(predicateList.toArray(new Predicate[predicateList.size()]));

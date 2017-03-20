@@ -16,7 +16,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User,String>,JpaSpecificationExecutor<User> {
 
     @Modifying
-    @Query("delete from User o where lower(o.id)=lower(:id) ")
+    @Query("update User o set o.isDel=1 where lower(o.id)=lower(:id) ")
     public void deleteByPrimaryKey(@Param("id")Integer id);
 
     @Modifying

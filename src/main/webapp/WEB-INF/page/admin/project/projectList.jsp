@@ -26,7 +26,7 @@
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
             <div class="pull-right">
                 <div class="btn-group">
-                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/project/add" data-toggle="dialog" data-width="900" data-height="360" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i> 添加新项目</a></button>
+                     <button type="button" class="btn-default" ><a href="${pageContext.request.contextPath}/admin/project/add" data-toggle="dialog" data-width="900" data-height="360" data-id="dialog-mask" data-mask="true" style="text-decoration: none;"><i class="fa fa-plus"></i> 添加新项目</a></button>
                 </div>
             </div>
         </div>

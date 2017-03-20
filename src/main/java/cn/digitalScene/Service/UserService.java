@@ -49,6 +49,9 @@ public class UserService {
                 Predicate predicate=null;
 
                 //匹配属性和属性对应的值
+                //默认查询isDel为0
+                predicate=criteriaBuilder.equal(root.get("isDel"),0);
+                predicateList.add(predicate);
 
                 if (username!=null&&!username.equals("")){
                     Path<String> stringPath=root.get("username");
