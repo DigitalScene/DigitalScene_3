@@ -309,6 +309,19 @@ public class VideoEditController {
     }
 
     /**
+     * 审核界面
+     * @param videoEditId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer videoEditId,Model model){
+        String moduleId="videoEditId_"+videoEditId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/videoEdit/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return

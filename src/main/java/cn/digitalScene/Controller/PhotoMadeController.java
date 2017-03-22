@@ -310,6 +310,19 @@ public class PhotoMadeController {
     }
 
     /**
+     * 审核界面
+     * @param photoMadeId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer photoMadeId,Model model){
+        String moduleId="photoMadeId_"+photoMadeId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/photoMade/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return

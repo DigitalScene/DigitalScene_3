@@ -336,6 +336,19 @@ public class DataUploadController {
         return "/page/admin/module/dataUpload/toCheckList";
     }
 
+    /**
+     * 审核界面
+     * @param dataUploadId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer dataUploadId,Model model){
+        String moduleId="dataUploadId_"+dataUploadId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/dataUpload/toCheck";
+    }
+
     @ResponseBody
     @RequestMapping("/toCheckFinish")
     public Object toCheckFinish(Integer id,HttpSession session){

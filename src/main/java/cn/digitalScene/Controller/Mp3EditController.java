@@ -309,6 +309,19 @@ public class Mp3EditController {
     }
 
     /**
+     * 审核界面
+     * @param mp3EditId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer mp3EditId,Model model){
+        String moduleId="mp3EditId_"+mp3EditId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/mp3Edit/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return

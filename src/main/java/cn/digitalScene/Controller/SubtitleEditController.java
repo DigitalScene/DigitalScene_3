@@ -317,6 +317,19 @@ public class SubtitleEditController {
     }
 
     /**
+     * 审核界面
+     * @param subtitleEditId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer subtitleEditId,Model model){
+        String moduleId="subtitleEditId_"+subtitleEditId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/subtitleEdit/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return

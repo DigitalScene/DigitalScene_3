@@ -309,6 +309,19 @@ public class ThrDModelMadeController {
     }
 
     /**
+     * 审核界面
+     * @param thrDModelMadeId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer thrDModelMadeId,Model model){
+        String moduleId="thrDModelMadeId_"+thrDModelMadeId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/thrDModelMade/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return

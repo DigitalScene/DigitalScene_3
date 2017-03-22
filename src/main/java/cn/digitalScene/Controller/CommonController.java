@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -137,7 +140,7 @@ public class CommonController {
     }
 
     /**
-     * 图片删除
+     * 文件删除
      */
     @ResponseBody
     @RequestMapping("/file/delete")
@@ -181,6 +184,59 @@ public class CommonController {
             return executeResult.jsonReturnFile(200,fileInfo.getFileName(),fileInfo.getReadFilePath());
         } catch (Exception e) {
             return executeResult.jsonReturn(300," 上传失败，请重试！",false);
+        }
+    }
+
+    @RequestMapping("/file/download")
+    public void downLoadFile(HttpServletRequest request,HttpServletResponse response,String fileName, String url)
+    {
+        String basePath=request.getSession().getServletContext().getRealPath("/");
+        File file=new File(basePath+url);
+        if (file == null || !file.exists())
+        {
+            return;
+        }
+        OutputStream out = null;
+        FileInputStream in=null;
+        try {
+            response.reset();
+//            response.setContentType("application/octet-stream; charset=utf-8");
+            response.setContentType("application/x-msdownload ; charset=utf-8");
+            response.setHeader("Content-Disposition", "attachment; filename=\"" +fileName);
+            out = response.getOutputStream();
+            in=new FileInputStream(file);
+
+            byte[] b=new byte[1024];
+
+            int i=0;
+            while ((i=in.read(b))>0){
+                out.write(b,0,i);
+            }
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                in = null;
+            }
+
+            if (out != null)
+            {
+                try {
+                    out.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

@@ -52,7 +52,7 @@
                 <td class="project">${list.getThrDModelMadeStatus()}</td>
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toCheck?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true"  >审核</a>
+                    <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toCheck?thrDModelMadeId=${list.thrDModelMade.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true"  >审核</a>
                     <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toCheckFinish?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要审核完成吗？" >审核完成</a>
                 </td>
             </tr>

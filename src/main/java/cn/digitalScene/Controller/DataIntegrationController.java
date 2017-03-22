@@ -318,6 +318,19 @@ public class DataIntegrationController {
     }
 
     /**
+     * 审核界面
+     * @param dataIntegrationId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer dataIntegrationId,Model model){
+        String moduleId="dataIntegrationId_"+dataIntegrationId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/dataIntegration/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return

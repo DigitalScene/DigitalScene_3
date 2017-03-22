@@ -319,6 +319,19 @@ public class PhotoEditController {
     }
 
     /**
+     * 审核界面
+     * @param photoEditId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer photoEditId,Model model){
+        String moduleId="photoEditId_"+photoEditId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/photoEdit/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return

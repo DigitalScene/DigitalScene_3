@@ -309,6 +309,19 @@ public class SceneMadeController {
     }
 
     /**
+     * 审核界面
+     * @param sceneMadeId
+     * @return
+     */
+    @RequestMapping("/toCheck")
+    public Object toCheck(Integer sceneMadeId,Model model){
+        String moduleId="sceneMadeId_"+sceneMadeId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
+        return "/page/admin/module/sceneMade/toCheck";
+    }
+
+    /**
      * 确认审核完成列表
      * @param id
      * @return
