@@ -1,8 +1,10 @@
 package cn.digitalScene.Controller;
 
 import cn.digitalScene.Model.Project;
+import cn.digitalScene.Model.UploadFile;
 import cn.digitalScene.Model.User;
 import cn.digitalScene.Service.ProjectService;
+import cn.digitalScene.Service.UploadFileService;
 import cn.digitalScene.Service.UserService;
 import cn.digitalScene.Utils.ExecuteResult;
 import cn.digitalScene.Utils.PageUtils;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 25065 on 2017/3/13.
@@ -30,6 +33,8 @@ public class PhotoMadeController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private UploadFileService uploadFileService;
 
     //待指派列表搜索参数的数量
     private static int parameterCountBeforeFromAppoint=0;
@@ -217,14 +222,18 @@ public class PhotoMadeController {
     }
 
     /**
-     * 处理操作
-     * @param id
+     * 处理操作界面
+     * @param photoMadeId
      * @param model
      * @return
      */
     @RequestMapping("/toDealWith")
-    public String toDealWith(Integer id,Model model){
-        model.addAttribute("id",id);
+    public String toDealWith(Integer photoMadeId,Model model){
+        String moduleId="photoMadeId_"+photoMadeId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+
+        model.addAttribute("moduleId",moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
         return "/page/admin/module/photoMade/toDealWith";
     }
 

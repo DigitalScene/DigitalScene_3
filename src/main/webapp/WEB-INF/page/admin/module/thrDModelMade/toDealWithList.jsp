@@ -60,7 +60,7 @@
                     </c:if>
                 </td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toDealWith?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true" <c:if test="${list.thrDModelMade.is_thrDModelMadePeople!=1}">disabled="disabled" </c:if> >处理</a>
+                    <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toDealWith?thrDModelMadeId=${list.thrDModelMade.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true" <c:if test="${list.thrDModelMade.is_thrDModelMadePeople!=1}">disabled="disabled" </c:if> >处理</a>
                     <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toDealWithFinish?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要处理完成吗？" <c:if test="${list.thrDModelMade.is_thrDModelMadePeople!=1}">disabled="disabled" </c:if>>处理完成</a>
                 </td>
             </tr>

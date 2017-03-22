@@ -41,9 +41,6 @@ public class DataUpload {
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "dataUpload")
     private Project project;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = {CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REMOVE},mappedBy = "dataUpload")
-    private List<DataUploadFile> dataUploadFileArrayList=new ArrayList<>();
-
     public Integer getId() {
         return id;
     }

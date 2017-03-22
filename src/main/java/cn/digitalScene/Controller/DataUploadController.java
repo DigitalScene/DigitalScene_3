@@ -1,10 +1,13 @@
 package cn.digitalScene.Controller;
 
 import cn.digitalScene.Model.Project;
+import cn.digitalScene.Model.UploadFile;
 import cn.digitalScene.Model.User;
 import cn.digitalScene.Service.ProjectService;
+import cn.digitalScene.Service.UploadFileService;
 import cn.digitalScene.Service.UserService;
 import cn.digitalScene.Utils.ExecuteResult;
+import cn.digitalScene.Utils.FileUtils;
 import cn.digitalScene.Utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +43,8 @@ public class DataUploadController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private UploadFileService uploadFileService;
 
     //待指派列表搜索参数的数量
     private static int parameterCountBeforeFromAppoint=0;
@@ -259,9 +264,20 @@ public class DataUploadController {
         }
     }
 
-    @RequestMapping("/toDealWith")
-    public String toDealWith(Integer id,Model model){
-        model.addAttribute("id",id);
+    /**
+     * 处理操作界面
+     * @param dataUploadId
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/toDealWith",method = RequestMethod.GET)
+    public String toDealWith(Integer dataUploadId,Model model){
+
+        String moduleId="dataUploadId_"+dataUploadId;
+        List<UploadFile> uploadFileList=uploadFileService.findAllByModuleId(moduleId);
+
+        model.addAttribute("moduleId",moduleId);
+        model.addAttribute("uploadFileList",uploadFileList);
         return "/page/admin/module/dataUpload/toDealWith";
     }
 
@@ -389,55 +405,4 @@ public class DataUploadController {
         return "/page/admin/module/dataUpload/finishList";
     }
 
-    /**
-     * 图片压缩文件上传
-     */
-    @ResponseBody
-    @RequestMapping("/fileUpload")
-    public Object fileUpload(HttpServletRequest request, HttpServletResponse response) throws Exception{
-
-        String basePath=request.getSession().getServletContext().getRealPath("/");
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-        String ymd="uploads"+"/dataUpload/"+sdf.format(new Date());
-        String parentPath=basePath+ymd+"/";
-
-        String readFilePath=null;
-
-        String path=null;
-
-        try {
-            //解析器解析request的上下文
-            CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(request.getSession().getServletContext());
-
-            String fileName=null;
-            //先判断request中是否包含multipart类型的数据，
-            if (multipartResolver.isMultipart(request)){
-                //再将request中的数据转化成multipart类型的数据
-                MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest) request;
-                Iterator iterator=multiRequest.getFileNames();
-                while (iterator.hasNext()){
-                    MultipartFile file=multiRequest.getFile((String)iterator.next());
-                    if (file!=null){
-                        fileName=file.getOriginalFilename();
-
-                        String imageType=fileName.substring(fileName.lastIndexOf(".")).trim().toLowerCase();
-                        String uuid= UUID.randomUUID().toString().replace("-","");//返回一个随机UUID
-                        String newFileName=uuid+imageType;
-
-                        path=parentPath+newFileName;
-                        readFilePath=ymd+"/"+newFileName;
-                        File localFile=new File(path);
-                        if (!localFile.getParentFile().exists()){
-                            localFile.getParentFile().mkdirs();
-                        }
-                        file.transferTo(localFile);
-                        System.out.println(readFilePath);
-                    }
-                }
-            }
-            return executeResult.jsonReturnFile(200,fileName,readFilePath);
-        } catch (Exception e) {
-            return executeResult.jsonReturn(300,e.getMessage(),false);
-        }
-    }
 }

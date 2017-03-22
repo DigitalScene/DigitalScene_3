@@ -3,7 +3,9 @@ package cn.digitalScene.Model;
 import cn.digitalScene.Utils.TimeStringUtils;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 25065 on 2017/3/15.
@@ -32,7 +34,6 @@ public class SubtitleEdit {
     private Date subtitleEditCheckDate;//字幕文件编辑审核时间
 
     private Date subtitleEditFinishDate;//字幕文件编辑完成时间
-
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "subtitleEdit")
     private Project project;
@@ -72,8 +73,6 @@ public class SubtitleEdit {
     public void setSubtitleEditFinishDate(Date subtitleEditFinishDate) {
         this.subtitleEditFinishDate = subtitleEditFinishDate;
     }
-
-
 
     public Integer getId() {
         return id;
