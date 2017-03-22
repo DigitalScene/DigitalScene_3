@@ -18,7 +18,7 @@
                     <td colspan="2">
                         <label class="control-label ">场景构建模块</label>　　
                         <div style="display: inline-block;padding: 6px;line-height: 10px;margin: 2px 0;border: 2px dashed #1F73B6">
-                            温馨提示：可供下载，离线审核
+                            温馨提示：可供下载，离线审核或查看
                         </div>
                     </td>
                 </tr>

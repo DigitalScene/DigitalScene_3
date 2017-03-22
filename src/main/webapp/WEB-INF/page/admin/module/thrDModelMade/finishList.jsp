@@ -56,7 +56,7 @@
                 <td class="project">${list.getThrDModelMadeStatus()}</td>
                 <td class="project">${list.getProjectStatus()}</td>
                 <td class="project">
-                    <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toCheck?id=${list.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true">查看详情</a>
+                    <a href="${pageContext.request.contextPath}/admin/thrDModelMade/toCheck?thrDModelMadeId=${list.thrDModelMade.id}" class="btn btn-info" data-toggle="dialog" data-width="500" data-height="300" data-id="dialog-mask" data-mask="true">查看详情</a>
                 </td>
             </tr>
         </c:forEach>
