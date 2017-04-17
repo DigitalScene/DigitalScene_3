@@ -53,7 +53,7 @@
                 <td class="project">
                     <c:if test="${list.dataUpload.is_dataUploadPeople!=1}">
                         <a href="${pageContext.request.contextPath}/admin/dataUpload/toAccept?id=${list.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要接受处理吗？">接受</a>
-                        <a href="${pageContext.request.contextPath}/admin/common/module/toReject?id=${list.id}&type=photoEdit" class="btn btn-red" data-toggle="dialog" data-width="680" data-height="240" data-id="dialog-mask" data-mask="true">拒绝</a>
+                        <a href="${pageContext.request.contextPath}/admin/common/module/toReject?id=${list.id}&type=dataUpload" class="btn btn-red" data-toggle="dialog" data-width="680" data-height="240" data-id="dialog-mask" data-mask="true">拒绝</a>
                     </c:if>
                     <c:if test="${list.dataUpload.is_dataUploadPeople==1}">
                         已接受

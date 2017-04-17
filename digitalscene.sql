@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-03-20 22:01:47
+Date: 2017-03-22 18:22:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,7 +37,7 @@ CREATE TABLE `ds_dataintegration` (
 -- Records of ds_dataintegration
 -- ----------------------------
 INSERT INTO `ds_dataintegration` VALUES ('6', '2017-03-17 20:28:52', 'user2(小黑2)', '不想干活', '2017-03-17 20:28:36', 'admin(小白)', '1', null, '2017-03-17 20:29:00', 'admin(小白)');
-INSERT INTO `ds_dataintegration` VALUES ('7', null, '', '', null, '', '0', null, null, '');
+INSERT INTO `ds_dataintegration` VALUES ('7', '2017-03-22 18:18:13', 'admin(小白)', '', '2017-03-22 18:16:28', 'admin(小白)', '1', null, '2017-03-22 18:19:39', 'admin(小白)');
 
 -- ----------------------------
 -- Table structure for ds_dataupload
@@ -60,24 +60,7 @@ CREATE TABLE `ds_dataupload` (
 -- Records of ds_dataupload
 -- ----------------------------
 INSERT INTO `ds_dataupload` VALUES ('6', '2017-03-16 15:16:37', 'user2(小黑2)', '', '2017-03-15 20:53:51', 'admin(小白)', '1', '2017-03-16 15:22:45', 'admin(小白)');
-INSERT INTO `ds_dataupload` VALUES ('7', '2017-03-17 20:33:02', 'user1(小黑)', '', '2017-03-20 19:39:44', 'admin(小白)', '1', '2017-03-17 20:33:06', 'admin(小白)');
-
--- ----------------------------
--- Table structure for ds_datauploadfile
--- ----------------------------
-DROP TABLE IF EXISTS `ds_datauploadfile`;
-CREATE TABLE `ds_datauploadfile` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) DEFAULT NULL,
-  `dataupload_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_kxid5xs0djb5j3p9dnd8s7nkm` (`dataupload_id`),
-  CONSTRAINT `FK_kxid5xs0djb5j3p9dnd8s7nkm` FOREIGN KEY (`dataupload_id`) REFERENCES `ds_dataupload` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of ds_datauploadfile
--- ----------------------------
+INSERT INTO `ds_dataupload` VALUES ('7', '2017-03-22 18:11:44', 'user1(小黑)', '', '2017-03-20 19:39:44', 'admin(小白)', '1', '2017-03-22 18:12:37', 'admin(小白)');
 
 -- ----------------------------
 -- Table structure for ds_mp3edit
@@ -100,7 +83,7 @@ CREATE TABLE `ds_mp3edit` (
 -- ----------------------------
 -- Records of ds_mp3edit
 -- ----------------------------
-INSERT INTO `ds_mp3edit` VALUES ('8', '1', null, '2017-03-17 18:34:00', 'user2(小黑2)', '不想干活', '2017-03-17 18:33:52', 'admin(小白)', '2017-03-17 20:31:41', 'admin(小白)');
+INSERT INTO `ds_mp3edit` VALUES ('8', '1', null, '2017-03-22 17:00:12', 'admin(小白)', '不想干活', '2017-03-22 16:54:03', 'admin(小白)', '2017-03-22 17:59:06', 'admin(小白)');
 
 -- ----------------------------
 -- Table structure for ds_photoedit
@@ -124,7 +107,7 @@ CREATE TABLE `ds_photoedit` (
 -- Records of ds_photoedit
 -- ----------------------------
 INSERT INTO `ds_photoedit` VALUES ('6', '1', null, '2017-03-16 18:17:22', 'user1(小黑)', '不想干活', '2017-03-16 18:17:06', 'admin(小白)', '2017-03-16 18:25:18', 'admin(小白)');
-INSERT INTO `ds_photoedit` VALUES ('7', '0', null, null, '', '', null, '', null, '');
+INSERT INTO `ds_photoedit` VALUES ('7', '1', null, '2017-03-22 18:13:36', 'admin(小白)', '', '2017-03-22 18:13:02', 'admin(小白)', '2017-03-22 18:13:46', 'admin(小白)');
 
 -- ----------------------------
 -- Table structure for ds_photomade
@@ -148,7 +131,7 @@ CREATE TABLE `ds_photomade` (
 -- Records of ds_photomade
 -- ----------------------------
 INSERT INTO `ds_photomade` VALUES ('6', '1', null, '2017-03-16 23:18:01', 'user2(小黑2)', '不想干活', '2017-03-16 23:17:54', 'admin(小白)', '2017-03-16 23:18:05', 'admin(小白)');
-INSERT INTO `ds_photomade` VALUES ('7', '0', null, null, '', '', null, '', null, '');
+INSERT INTO `ds_photomade` VALUES ('7', '1', null, '2017-03-22 18:14:40', 'admin(小白)', '', '2017-03-22 18:13:57', 'admin(小白)', '2017-03-22 18:15:05', 'admin(小白)');
 
 -- ----------------------------
 -- Table structure for ds_project
@@ -205,7 +188,7 @@ CREATE TABLE `ds_project` (
 -- Records of ds_project
 -- ----------------------------
 INSERT INTO `ds_project` VALUES ('5', '2017-03-15 20:35:12', '杨圣陶', '好艺术馆', '0', '5', '5', '5', '5', '5', '5', '6', '6', '5', '武汉理工艺术馆', '5', '6', '6', '8', '6', '6', '6', null, null, '6');
-INSERT INTO `ds_project` VALUES ('6', '2017-03-17 19:51:18', '杨小白', '好学校', '0', '0', '2', '6', '0', '0', '0', '5', '5', '6', '武汉理工西苑', '3', '7', '7', null, '7', '7', '7', '1', '1', null);
+INSERT INTO `ds_project` VALUES ('6', '2017-03-17 19:51:18', '杨小白', '好学校', '0', '5', '5', '6', '5', '5', '5', '5', '5', '6', '武汉理工西苑', '5', '7', '7', null, '7', '7', '7', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for ds_role
@@ -250,7 +233,7 @@ CREATE TABLE `ds_scenemade` (
 -- Records of ds_scenemade
 -- ----------------------------
 INSERT INTO `ds_scenemade` VALUES ('6', '1', null, '2017-03-17 18:32:32', 'user1(小黑)', '不想干活', '2017-03-17 18:32:23', 'admin(小白)', '2017-03-17 18:32:39', 'admin(小白)');
-INSERT INTO `ds_scenemade` VALUES ('7', '0', null, null, '', '', null, '', null, '');
+INSERT INTO `ds_scenemade` VALUES ('7', '1', null, '2017-03-22 18:16:07', 'admin(小白)', '', '2017-03-22 18:15:13', 'admin(小白)', '2017-03-22 18:16:19', 'admin(小白)');
 
 -- ----------------------------
 -- Table structure for ds_subtitleedit
@@ -273,7 +256,7 @@ CREATE TABLE `ds_subtitleedit` (
 -- ----------------------------
 -- Records of ds_subtitleedit
 -- ----------------------------
-INSERT INTO `ds_subtitleedit` VALUES ('1', '1', null, '2017-03-17 20:06:44', 'user2(小黑2)', '不想干活', '2017-03-17 20:06:38', 'admin(小白)', '2017-03-17 20:32:14', 'admin(小白)');
+INSERT INTO `ds_subtitleedit` VALUES ('1', '1', null, '2017-03-22 16:51:46', 'admin(小白)', '不想干活', '2017-03-21 13:40:36', 'admin(小白)', '2017-03-22 17:59:19', 'admin(小白)');
 
 -- ----------------------------
 -- Table structure for ds_thrdmodelmade
@@ -296,7 +279,40 @@ CREATE TABLE `ds_thrdmodelmade` (
 -- ----------------------------
 -- Records of ds_thrdmodelmade
 -- ----------------------------
-INSERT INTO `ds_thrdmodelmade` VALUES ('1', '1', null, '2017-03-17 20:02:44', 'user1(小黑)', '不想干活', '2017-03-17 20:02:37', 'admin(小白)', '2017-03-17 20:02:49', 'admin(小白)');
+INSERT INTO `ds_thrdmodelmade` VALUES ('1', '1', null, '2017-03-22 16:53:42', 'admin(小白)', '不想干活', '2017-03-22 16:52:23', 'admin(小白)', '2017-03-22 17:59:16', 'admin(小白)');
+
+-- ----------------------------
+-- Table structure for ds_uploadfile
+-- ----------------------------
+DROP TABLE IF EXISTS `ds_uploadfile`;
+CREATE TABLE `ds_uploadfile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fileName` varchar(255) DEFAULT NULL,
+  `moduleId` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ds_uploadfile
+-- ----------------------------
+INSERT INTO `ds_uploadfile` VALUES ('1', 'piano.zip', 'subtitleEditId_1', 'uploads/subtitleEdit/20170322142830/71916c4f078844cf936f952f6df0556e.zip');
+INSERT INTO `ds_uploadfile` VALUES ('9', 'piano.zip', 'subtitleEditId_1', 'uploads/subtitleEdit/20170322155216/9b61484df5cc4c7495d7b81d66b6f8bf.zip');
+INSERT INTO `ds_uploadfile` VALUES ('10', 'piano.zip', 'subtitleEditId_1', 'uploads/subtitleEdit/20170322165100/d4097f25745d4d1a867fee3ea6e97370.zip');
+INSERT INTO `ds_uploadfile` VALUES ('11', 'piano.zip', 'thrDModelMadeId_1', 'uploads/thrDModelMade/20170322165245/fa6a7be61f3047e0870094d9388a724f.zip');
+INSERT INTO `ds_uploadfile` VALUES ('13', 'piano.zip', 'thrDModelMadeId_1', 'uploads/thrDModelMade/20170322165315/f51ed6b2f1f74735a0a78f4cc4be4e32.zip');
+INSERT INTO `ds_uploadfile` VALUES ('14', 'piano.zip', 'mp3EditId_8', 'uploads/mp3Edit/20170322165920/b632c88858ed46e897b466ac143222ac.zip');
+INSERT INTO `ds_uploadfile` VALUES ('15', 'piano.zip', 'mp3EditId_8', 'uploads/mp3Edit/20170322165930/442d7582cf7447d295248bbb5aa84a75.zip');
+INSERT INTO `ds_uploadfile` VALUES ('16', 'piano.zip', 'mp3EditId_8', 'uploads/mp3Edit/20170322165946/6bd214d7fcad4937a6649f515174ac80.zip');
+INSERT INTO `ds_uploadfile` VALUES ('17', 'piano.zip', 'videoEditId_6', 'uploads/videoEdit/20170322170022/fb5f88dd704c484ca417e423765496b6.zip');
+INSERT INTO `ds_uploadfile` VALUES ('18', 'piano.zip', 'videoEditId_6', 'uploads/videoEdit/20170322170036/67205e139d9749fa8014a79e4855a14a.zip');
+INSERT INTO `ds_uploadfile` VALUES ('19', 'piano.zip', 'dataUploadId_7', 'uploads/dataUpload/20170322181128/568bbf5cd8e843919764eeb336785573.zip');
+INSERT INTO `ds_uploadfile` VALUES ('20', 'piano.zip', 'dataUploadId_7', 'uploads/dataUpload/20170322181135/08838d103a4649498e9d0f7a552689e3.zip');
+INSERT INTO `ds_uploadfile` VALUES ('21', 'piano.zip', 'photoEditId_7', 'uploads/photoEdit/20170322181329/af8ea983e17b48338b44feed270697ed.zip');
+INSERT INTO `ds_uploadfile` VALUES ('22', 'piano.zip', 'photoMadeId_7', 'uploads/photoMade/20170322181429/6941d081f46f4bbbaa2a03876bfad109.zip');
+INSERT INTO `ds_uploadfile` VALUES ('23', 'piano.zip', 'sceneMadeId_7', 'uploads/sceneMade/20170322181559/10e46d811a6a47a5a02014c4b450088a.zip');
+INSERT INTO `ds_uploadfile` VALUES ('24', 'piano.zip', 'dataIntegrationId_7', 'uploads/dataIntegration/20170322181654/801fa7bc9a814b6e9a84c0afea0e9e26.zip');
+INSERT INTO `ds_uploadfile` VALUES ('25', 'piano.zip', 'dataIntegrationId_7', 'uploads/dataIntegration/20170322181726/b05dc8fdcdc9426abaaf5b404555bcdf.zip');
 
 -- ----------------------------
 -- Table structure for ds_user
@@ -343,4 +359,4 @@ CREATE TABLE `ds_videoedit` (
 -- ----------------------------
 -- Records of ds_videoedit
 -- ----------------------------
-INSERT INTO `ds_videoedit` VALUES ('6', '1', null, null, '', '2017-03-17 18:34:34', 'user2(小黑2)', '不想干活', '2017-03-17 20:30:32', '2017-03-17 18:34:28', 'admin(小白)', 'admin(小白)');
+INSERT INTO `ds_videoedit` VALUES ('6', '1', null, null, '', '2017-03-22 17:00:55', 'admin(小白)', '不想干活', '2017-03-22 17:59:12', '2017-03-22 16:54:09', 'admin(小白)', 'admin(小白)');
